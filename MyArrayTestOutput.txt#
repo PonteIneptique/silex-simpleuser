@@ -1,0 +1,178 @@
+PHPUnit 4.3.4 by Sebastian Bergmann.
+
+Configuration read from /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/phpunit.xml.dist
+
+.....[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m.............[41;37mF[0m.
+
+Time: 97 ms, Memory: 17.25Mb
+
+There were 24 errors:
+
+1) SimpleUser\Tests\UserManagerTest::testCreateUser
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+2) SimpleUser\Tests\UserManagerTest::testStoreAndFetchUser
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+3) SimpleUser\Tests\UserManagerTest::testUpdateUser
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+4) SimpleUser\Tests\UserManagerTest::testDeleteUser
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+5) SimpleUser\Tests\UserManagerTest::testCustomFields
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+6) SimpleUser\Tests\UserManagerTest::testLoadUserByUsernamePassingEmailAddress
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+7) SimpleUser\Tests\UserManagerTest::testLoadUserByUsernamePassingUsername
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+8) SimpleUser\Tests\UserManagerTest::testLoadUserByUsernameThrowsExceptionIfUserNotFound
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+9) SimpleUser\Tests\UserManagerTest::testGetUsernameReturnsEmailIfUsernameIsNull
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+10) SimpleUser\Tests\UserManagerTest::testGetUsernameReturnsUsernameIfNotNull
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+11) SimpleUser\Tests\UserManagerTest::testUsernameCannotContainAtSymbol
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+12) SimpleUser\Tests\UserManagerTest::testValidationFailsOnDuplicateEmail
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+13) SimpleUser\Tests\UserManagerTest::testValidationFailsOnDuplicateUsername
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+14) SimpleUser\Tests\UserManagerTest::testFindAndCount
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+15) SimpleUser\Tests\UserManagerTest::testCustomUserClass
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+16) SimpleUser\Tests\UserManagerTest::testSupportsBaseClass
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+17) SimpleUser\Tests\UserManagerTest::testSupportsSubClass
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+18) SimpleUser\Tests\UserManagerTest::testValidationWhenUsernameIsRequired
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+19) SimpleUser\Tests\UserManagerTest::testBeforeInsertEvents
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+20) SimpleUser\Tests\UserManagerTest::testAfterInsertEvents
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+21) SimpleUser\Tests\UserManagerTest::testBeforeUpdateEvents
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+22) SimpleUser\Tests\UserManagerTest::testAfterUpdateEvents
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+23) SimpleUser\Tests\UserManagerTest::testPasswordStrengthValidator
+Argument 1 passed to Doctrine\ORM\Tools\SchemaTool::__construct() must be an instance of Doctrine\ORM\EntityManager, none given, called in /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php on line 62 and defined
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Tools/SchemaTool.php:63
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:62
+
+24) SimpleUser\Tests\UserServiceProviderTest::testWithDefaults
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:135
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:157
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:251
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/silex/silex/src/Silex/Application.php:188
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserServiceProviderTest.php:41
+
+--
+
+There was 1 failure:
+
+1) SimpleUser\Tests\UserTest::testUserIsEnabledByDefault
+Failed asserting that '1' is true.
+
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserTest.php:89
+[37;41m                                                   [0m
+[37;41mFAILURES!                                          [0m
+[37;41mTests: 44, Assertions: 25, Failures: 1, Errors: 24.[0m

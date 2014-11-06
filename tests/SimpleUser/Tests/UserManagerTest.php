@@ -16,7 +16,6 @@ use Silex\Provider;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\SecurityServiceProvider;
 
-use Doctrine\DBAL\Connection;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
@@ -38,6 +37,25 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
     /** @var EventDispatcher */
     protected $dispatcher;
 
+    private function generateDB(Application $app) {
+        /*
+         * Setup the Schema
+         */
+
+        $em = $app["user.doctrine.em"];
+        $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
+        $classes = array(
+            $em->getClassMetadata('SimpleUser\\Entity\\User'),
+            $em->getClassMetadata('SimpleUser\\Entity\\CustomeFields'),
+        );
+        $tool->createSchema($classes);
+
+        /*
+         *  Class vars
+         */
+        $this->em = $em;
+    }
+
     protected function setUp()
     {
         $app = new Application();
@@ -54,6 +72,10 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
 
         $app->register(new UserServiceProvider());
 
+        $this->generateDB($app);;
+        /*
+         *  Class vars
+         */
         $this->app = $app;
         $this->userManager = $app["user.manager"];
         $this->conn = $app['db'];

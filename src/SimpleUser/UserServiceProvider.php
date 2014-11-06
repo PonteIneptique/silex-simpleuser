@@ -117,12 +117,11 @@ class UserServiceProvider implements ServiceProviderInterface, ControllerProvide
             $conn = $app['dbs']['default'];
             $em = $app['dbs.event_manager']['default'];
 
-            $driver = new AnnotationDriver(new AnnotationReader(), array(__DIR__.'/Entity'));
-            $config = Setup::createConfiguration(false);
-            $config->setMetadataDriverImpl($driver);
+
+            $isDevMode = true;
+            $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__.'/../Entity'), $isDevMode, null, null, false);
 
             $em = EntityManager::create($conn, $config, $em);
-
             return $em;
         });
 

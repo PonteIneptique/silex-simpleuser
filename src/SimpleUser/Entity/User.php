@@ -8,32 +8,29 @@
 
 namespace SimpleUser\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-
+use Doctrine\ORM\Mapping as ORM;
 /**
  * User
  *
- * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="unique_email", columns={"email"}), @ORM\UniqueConstraint(name="username", columns={"username"})})
  * @ORM\Entity(repositoryClass="SimpleUser\Entity\UserRepository")
+ * @ORM\Table(name="simple_user_user")
  */
 class User implements AdvancedUserInterface, \Serializable
 {
-    protected $customFields = array();
-
-
-     /* @var integer
+    /** 
+     * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=true)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=100, nullable=false)
+     * @ORM\Column(name="email", type="string", length=100, nullable=false, unique=true)
      */
     private $email = '';
 
@@ -75,7 +72,7 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=100, nullable=true)
+     * @ORM\Column(name="username", type="string", length=100, nullable=true, unique=true)
      */
     private $username;
 
@@ -100,21 +97,20 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $timePasswordResetRequested;
 
-/**
- * Constructor.
- *
- * @param string $email
- */
+    //protected $customFields = array();
+
+
+    /**
+     * Constructor.
+     *
+     * @param string $email
+     */
     public function __construct($email)
     {
         $this->email = $email;
         $this->timeCreated = time();
         $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
     }
-
-/*
- *  ORM related functions
- */
 
     /**
      * Set id
@@ -425,10 +421,6 @@ class User implements AdvancedUserInterface, \Serializable
     {
         return $this->timePasswordResetRequested;
     }
-
-/*
- *  Space for AdvancedUsers functions
- */
 
     /**
      * Get the actual username value that was set,

@@ -4,444 +4,279 @@ Configuration read from /home/thibault/dev/oauth-perseids-server/vendor/jasongri
 
 .....[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m.............[41;37mF[0m.
 
-Time: 119 ms, Memory: 19.50Mb
+Time: 100 ms, Memory: 17.25Mb
 
 There were 24 errors:
 
 1) SimpleUser\Tests\UserManagerTest::testCreateUser
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 2) SimpleUser\Tests\UserManagerTest::testStoreAndFetchUser
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 3) SimpleUser\Tests\UserManagerTest::testUpdateUser
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 4) SimpleUser\Tests\UserManagerTest::testDeleteUser
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 5) SimpleUser\Tests\UserManagerTest::testCustomFields
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 6) SimpleUser\Tests\UserManagerTest::testLoadUserByUsernamePassingEmailAddress
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 7) SimpleUser\Tests\UserManagerTest::testLoadUserByUsernamePassingUsername
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 8) SimpleUser\Tests\UserManagerTest::testLoadUserByUsernameThrowsExceptionIfUserNotFound
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 9) SimpleUser\Tests\UserManagerTest::testGetUsernameReturnsEmailIfUsernameIsNull
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 10) SimpleUser\Tests\UserManagerTest::testGetUsernameReturnsUsernameIfNotNull
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 11) SimpleUser\Tests\UserManagerTest::testUsernameCannotContainAtSymbol
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 12) SimpleUser\Tests\UserManagerTest::testValidationFailsOnDuplicateEmail
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 13) SimpleUser\Tests\UserManagerTest::testValidationFailsOnDuplicateUsername
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 14) SimpleUser\Tests\UserManagerTest::testFindAndCount
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 15) SimpleUser\Tests\UserManagerTest::testCustomUserClass
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 16) SimpleUser\Tests\UserManagerTest::testSupportsBaseClass
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 17) SimpleUser\Tests\UserManagerTest::testSupportsSubClass
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 18) SimpleUser\Tests\UserManagerTest::testValidationWhenUsernameIsRequired
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 19) SimpleUser\Tests\UserManagerTest::testBeforeInsertEvents
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 20) SimpleUser\Tests\UserManagerTest::testAfterInsertEvents
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 21) SimpleUser\Tests\UserManagerTest::testBeforeUpdateEvents
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 22) SimpleUser\Tests\UserManagerTest::testAfterUpdateEvents
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 23) SimpleUser\Tests\UserManagerTest::testPasswordStrengthValidator
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:58
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:48
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:75
 
 24) SimpleUser\Tests\UserServiceProviderTest::testWithDefaults
-Doctrine\Common\Annotations\AnnotationException: [Semantical Error] The annotation "@Doctrine\ORM\Mapping\Table" in class SimpleUser\Entity\User does not exist, or could not be auto-loaded.
+Doctrine\ORM\Mapping\MappingException: Class SimpleUser\Entity\User is not a valid entity or mapped super class.
 
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationException.php:52
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:594
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:518
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/DocParser.php:283
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/common/lib/Doctrine/Common/Annotations/AnnotationReader.php:151
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:143
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/MappingException.php:147
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/Driver/AnnotationDriver.php:169
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:293
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataFactory.php:178
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:269
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:613
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:136
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:135
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:158
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:157
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:126
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/pimple/pimple/lib/Pimple.php:83
-/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:252
+/home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/src/SimpleUser/UserServiceProvider.php:251
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/vendor/silex/silex/src/Silex/Application.php:188
 /home/thibault/dev/oauth-perseids-server/vendor/jasongrimes/silex-simpleuser/tests/SimpleUser/Tests/UserServiceProviderTest.php:41
 
