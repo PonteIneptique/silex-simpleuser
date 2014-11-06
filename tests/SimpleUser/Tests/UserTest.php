@@ -2,7 +2,7 @@
 
 namespace SimpleUser\Tests;
 
-use SimpleUser\User;
+use SimpleUser\Entity\User;
 
 class UserTest extends \PHPUnit_Framework_TestCase
 {

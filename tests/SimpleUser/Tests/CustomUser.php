@@ -2,7 +2,7 @@
 
 namespace SimpleUser\Tests;
 
-use SimpleUser\User;
+use SimpleUser\Entity\User;
 
 class CustomUser extends User
 {

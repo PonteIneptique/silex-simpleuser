@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleUser;
+namespace SimpleUser\Entity;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -10,17 +10,13 @@ use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Doctrine\DBAL\Connection;
+
+use Doctrine\ORM\EntityRepository;
+
 use Silex\Application;
 
-class UserManager implements UserProviderInterface
-{
-    /** @var Connection */
-    protected $conn;
 
-    /** @var \Silex\Application */
-    protected $app;
-
+class UserRepository extends EntityRepository implements UserProviderInterface {
     /** @var EventDispatcher */
     protected $dispatcher;
 
@@ -28,32 +24,16 @@ class UserManager implements UserProviderInterface
     protected $identityMap = array();
 
     /** @var string */
-    protected $userClass = '\SimpleUser\User';
+    protected $userClass = '\SimpleUser\Entity\User';
+
+    /** @var string */
+    protected $customFieldsClass = '\SimpleUser\CustomFields';
 
     /** @var bool */
     protected $isUsernameRequired = false;
 
     /** @var Callable */
     protected $passwordStrengthValidator;
-
-    /** @var string */
-    protected $userTableName = 'users';
-
-    /** @var string */
-    protected $userCustomFieldsTableName = 'user_custom_fields';
-
-    /**
-     * Constructor.
-     *
-     * @param Connection $conn
-     * @param Application $app
-     */
-    public function __construct(Connection $conn, Application $app)
-    {
-        $this->conn = $conn;
-        $this->app = $app;
-        $this->dispatcher = $app['dispatcher'];
-    }
 
     // ----- UserProviderInterface -----
 
@@ -114,7 +94,7 @@ class UserManager implements UserProviderInterface
      */
     public function supportsClass($class)
     {
-        return ($class === 'SimpleUser\User') || is_subclass_of($class, 'SimpleUser\User');
+        return ($class === 'SimpleUser\Entity\User') || is_subclass_of($class, 'SimpleUser\Entity\User');
     }
 
     // ----- End UserProviderInterface -----
@@ -334,139 +314,20 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * Get a single User instance that matches the given criteria. If more than one User matches, the first result is returned.
-     *
-     * @param array $criteria
-     * @return User|null
-     */
-    public function findOneBy(array $criteria)
-    {
-        $users = $this->findBy($criteria);
-
-        if (empty($users)) {
-            return null;
-        }
-
-        return reset($users);
-    }
-
-    /**
-     * Find User instances that match the given criteria.
-     *
-     * @param array $criteria
-     * @param array $options An array of the following options (all optional):<pre>
-     *      limit (int|array) The maximum number of results to return, or an array of (offset, limit).
-     *      order_by (string|array) The name of the column to order by, or an array of column name and direction, ex. array(time_created, DESC)
-     * </pre>
-     * @return User[] An array of matching User instances, or an empty array if no matching users were found.
-     */
-    public function findBy(array $criteria = array(), array $options = array())
-    {
-        // Check the identity map first.
-        if (array_key_exists('id', $criteria) && array_key_exists($criteria['id'], $this->identityMap)) {
-            return array($this->identityMap[$criteria['id']]);
-        }
-
-        list ($common_sql, $params) = $this->createCommonFindSql($criteria);
-
-        $sql = 'SELECT * ' . $common_sql;
-
-        if (array_key_exists('order_by', $options)) {
-            list ($order_by, $order_dir) = is_array($options['order_by']) ? $options['order_by'] : array($options['order_by']);
-            $sql .= 'ORDER BY ' . $this->conn->quoteIdentifier($order_by) . ' ' . ($order_dir == 'DESC' ? 'DESC' : 'ASC') . ' ';
-        }
-        if (array_key_exists('limit', $options)) {
-            list ($offset, $limit) = is_array($options['limit']) ? $options['limit'] : array(0, $options['limit']);
-            $sql .=   ' LIMIT ' . (int) $limit . ' ' .' OFFSET ' . (int) $offset ;
-        }
-
-        $data = $this->conn->fetchAll($sql, $params);
-
-        $users = array();
-        foreach ($data as $userData) {
-            if (array_key_exists($userData['id'], $this->identityMap)) {
-                $user = $this->identityMap[$userData['id']];
-            } else {
-                $userData['customFields'] = $this->getUserCustomFields($userData['id']);
-                $user = $this->hydrateUser($userData);
-                $this->identityMap[$user->getId()] = $user;
-            }
-            $users[] = $user;
-        }
-
-        return $users;
-    }
-
-    /**
-     * @param $userId
-     * @return array
-     */
-    protected function getUserCustomFields($userId)
-    {
-        $customFields = array();
-
-        $rows = $this->conn->fetchAll('SELECT * FROM ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' WHERE user_id = ?', array($userId));
-        foreach ($rows as $row) {
-            $customFields[$row['attribute']] = $row['value'];
-        }
-
-        return $customFields;
-    }
-
-    /**
-     * Get SQL query fragment common to both find and count querires.
-     *
-     * @param array $criteria
-     * @return array An array of SQL and query parameters, in the form array($sql, $params)
-     */
-    protected function createCommonFindSql(array $criteria = array())
-    {
-        $params = array();
-
-        $sql = 'FROM ' . $this->conn->quoteIdentifier($this->userTableName). ' ';
-        // JOIN on custom fields, if needed.
-        if (array_key_exists('customFields', $criteria)) {
-            $i = 0;
-            foreach ($criteria['customFields'] as $attribute => $value) {
-                $i++;
-                $alias = 'custom' . $i;
-                $sql .= 'JOIN ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' ' . $alias . ' ';
-                $sql .= 'ON ' . $this->conn->quoteIdentifier($this->userTableName). '.id = ' . $alias . '.user_id ';
-                $sql .= 'AND ' . $alias . '.attribute = :attribute' . $i . ' ';
-                $sql .= 'AND ' . $alias . '.value = :value' . $i . ' ';
-                $params['attribute' . $i] = $attribute;
-                $params['value' . $i] = $value;
-            }
-        }
-
-        $first_crit = true;
-        foreach ($criteria as $key => $val) {
-            if ($key == 'customFields') {
-                continue;
-            } else {
-                $sql .= ($first_crit ? 'WHERE' : 'AND') . ' ' . $key . ' = :' . $key . ' ';
-                $params[$key] = $val;
-            }
-            $first_crit = false;
-        }
-
-        return array ($sql, $params);
-    }
-
-    /**
-     * Count users that match the given criteria.
-     *
-     * @param array $criteria
-     * @return int The number of users that match the criteria.
-     */
+    * Count users that match the given criteria.
+    *
+    * @param array $criteria
+    * @return int The number of users that match the criteria.
+    */
     public function findCount(array $criteria = array())
     {
-        list ($common_sql, $params) = $this->createCommonFindSql($criteria);
-
-        $sql = 'SELECT COUNT(*) ' . $common_sql;
-
-        return $this->conn->fetchColumn($sql, $params) ?: 0;
+        return $this->createQueryBuilder('id')
+            ->select('COUNT(id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
     }
+
 
     /**
      * Insert a new User instance into the database.
@@ -641,7 +502,7 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * @param string $userClass The class to use for the user model. Must extend SimpleUser\User.
+     * @param string $userClass The class to use for the user model. Must extend SimpleUser\Entity\User.
      */
     public function setUserClass($userClass)
     {

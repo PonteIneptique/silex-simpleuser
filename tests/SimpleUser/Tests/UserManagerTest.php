@@ -3,16 +3,25 @@
 namespace SimpleUser\Tests;
 
 use SimpleUser\TokenGenerator;
-use SimpleUser\User;
+
+use SimpleUser\Entity\User;
+use SimpleUser\UserProvider;
+
 use SimpleUser\UserEvent;
 use SimpleUser\UserEvents;
-use SimpleUser\UserManager;
+use SimpleUser\UserServiceProvider;
+
 use Silex\Application;
+use Silex\Provider;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\SecurityServiceProvider;
+
 use Doctrine\DBAL\Connection;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+
+use Doctrine\ORM\Tools\SchemaTool;
+
 
 class UserManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,21 +38,27 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
     /** @var EventDispatcher */
     protected $dispatcher;
 
-    public function setUp()
+    protected function setUp()
     {
         $app = new Application();
-        $app->register(new SecurityServiceProvider());
-        $app->register(new DoctrineServiceProvider(), array(
-            'db.options' => array(
-                'driver' => 'pdo_sqlite',
-                'memory' => true,
-            ),
-        ));
-        $app['db']->executeUpdate(file_get_contents(__DIR__ . '/../../../sql/sqlite.sql'));
 
-        $this->userManager = new UserManager($app['db'], $app);
+        $app->register(new Provider\SecurityServiceProvider(),
+            array('security.firewalls' => array('dummy-firewall' => array('form' => array())))
+        );
+        $app->register(new Provider\DoctrineServiceProvider());
+
+        $app['db'] = array( 
+            'driver' => 'pdo_sqlite',
+            'path' => __DIR__.'/../../../cache/test/.ht.sqlite',
+        );
+
+        $app->register(new UserServiceProvider());
+
+        $this->app = $app;
+        $this->userManager = $app["user.manager"];
         $this->conn = $app['db'];
         $this->dispatcher = $app['dispatcher'];
+
     }
 
     public function testCreateUser()

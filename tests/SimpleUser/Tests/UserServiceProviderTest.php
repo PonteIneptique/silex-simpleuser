@@ -40,7 +40,7 @@ class UserServiceProviderTest extends \PHPUnit_Framework_TestCase
         $app = $this->getMinimalApp();
         $app->boot();
 
-        $this->assertInstanceOf('SimpleUser\UserManager', $app['user.manager']);
+        $this->assertInstanceOf('SimpleUser\Entity\UserRepository', $app['user.manager']);
         $this->assertInstanceOf('SimpleUser\UserController', $app['user.controller']);
         $this->assertNull($app['user']);
     }

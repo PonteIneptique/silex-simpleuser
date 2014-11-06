@@ -31,6 +31,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use \Swift_Mailer;
 use \Twig_Environment;
 
+use SimpleUser\Entity\User;
+
 class Mailer
 {
     const ROUTE_CONFIRM_EMAIL = 'user.confirm-email';

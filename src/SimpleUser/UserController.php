@@ -17,7 +17,7 @@ use JasonGrimes\Paginator;
  */
 class UserController
 {
-    /** @var UserManager */
+    /** @var UserRepository */
     protected $userManager;
 
     protected $templates = array(
@@ -43,10 +43,10 @@ class UserController
     /**
      * Constructor.
      *
-     * @param UserManager $userManager
+     * @param UserRepository $userManager
      * @param array $deprecated - Deprecated. No longer used.
      */
-    public function __construct(UserManager $userManager, $deprecated = null)
+    public function __construct(UserRepository $userManager, $deprecated = null)
     {
         $this->userManager = $userManager;
     }
