@@ -6,9 +6,8 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
- *
- * \Doctrine\ORM\Mapping\Entity
+ * @author Thibault Clerice
+ * @ORM\Entity
  * @ORM\Table(name="simple_user_user")
  */
 class User implements AdvancedUserInterface, \Serializable

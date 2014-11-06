@@ -7,33 +7,71 @@ use Silex\Application;
 use Silex\Provider;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\SecurityServiceProvider;
+
+use Doctrine\DBAL\DriverManager;
+
+use Doctrine\Common\Persistence\PersistentObject;
+use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Cache\FilesystemCache;
+
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\Tools\SchemaTool;
+
+use Symfony\Component\Filesystem\Filesystem;
+use Doctrine\Common\Annotations\AnnotationRegistry;  
+
+AnnotationRegistry::registerFile(__DIR__ . "/../vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/Driver/AnnotationDriver.php");
 
 //phpunit_bootstrap.php
 $app = new \Silex\Application();
 
-$app->register(new \Silex\Provider\SecurityServiceProvider());
+$app->register(new \Silex\Provider\SecurityServiceProvider(),
+	array('security.firewalls' => array('dummy-firewall' => array('form' => array())))
+);
 
 $app->register(new \Silex\Provider\DoctrineServiceProvider());
 
-$app['db'] = array( 
+$app['db.options'] = array(
     'driver' => 'pdo_sqlite',
-    'path' => __DIR__.'/../cache/test/.ht.sqlite',
+    'path' => __DIR__.'/cache/.ht.sqlite',
 );
 
-$app->register(new UserServiceProvider());
+$app['user.model'] = array(
+    "user" => "\\SimpleUser\\Entity\\User"
+);
 
-/*
- * Setup the Schema
+require_once __DIR__ . "/entity_manager.php";
+
+
+$app->boot();
+
+/**
+ * Inspired by authbucket/oauth2-php package's test suite.
+ *
  */
+$connection = $app["db"];
+$params = $connection->getParams();
+if (isset($params['master'])) {
+    $params = $params['master'];
+}
+$name = isset($params['path']) ? $params['path'] : (isset($params['dbname']) ? $params['dbname'] : false);
+unset($params['dbname']);
+$tmpConnection = DriverManager::getConnection($params);      
+$tmpConnection->getSchemaManager()->dropDatabase($name);  
+$tmpConnection->getSchemaManager()->createDatabase($name);
 
-$cacheDriver = new \Doctrine\Common\Cache\ArrayCache();
-$deleted = $cacheDriver->deleteAll();
+$em = $app['doctrine.orm.entity_manager'];
+// Generate testing database schema.
+$classes = array();
+foreach ($app['user.model'] as $class) {
+	echo $class;
+    $classes[] = $em->getClassMetadata($class);
+}
 
-$em = $app["user.doctrine.em"];
-$tool = new \Doctrine\ORM\Tools\SchemaTool($em);
-$classes = array(
-    $em->getClassMetadata('\\SimpleUser\\Entity\\User'),
-    $em->getClassMetadata('\\SimpleUser\\Entity\\CustomFields'),
-);
+PersistentObject::setObjectManager($em);
+$tool = new SchemaTool($em);
 $tool->createSchema($classes);
+
+return $app;
