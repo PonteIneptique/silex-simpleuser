@@ -4,7 +4,7 @@ Configuration read from /home/thibault/dev/oauth-perseids-server/vendor/jasongri
 
 .....[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m.............[41;37mF[0m.
 
-Time: 100 ms, Memory: 17.25Mb
+Time: 101 ms, Memory: 17.25Mb
 
 There were 24 errors:
 

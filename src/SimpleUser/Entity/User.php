@@ -1,15 +1,10 @@
 <?php
 
-/**
- * A simple User model.
- *
- * @package SimpleUser
- */
-
 namespace SimpleUser\Entity;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * User
  *
@@ -138,7 +133,7 @@ class User implements AdvancedUserInterface, \Serializable
      * Set email
      *
      * @param string $email
-     * @return Users
+     * @return User
      */
     public function setEmail($email)
     {
@@ -161,7 +156,7 @@ class User implements AdvancedUserInterface, \Serializable
      * Set password
      *
      * @param string $password
-     * @return Users
+     * @return User
      */
     public function setPassword($password)
     {
@@ -184,7 +179,7 @@ class User implements AdvancedUserInterface, \Serializable
      * Set salt
      *
      * @param string $salt
-     * @return Users
+     * @return User
      */
     public function setSalt($salt)
     {
@@ -278,7 +273,7 @@ class User implements AdvancedUserInterface, \Serializable
      * Set name
      *
      * @param string $name
-     * @return Users
+     * @return User
      */
     public function setName($name)
     {
@@ -301,7 +296,7 @@ class User implements AdvancedUserInterface, \Serializable
      * Set timeCreated
      *
      * @param integer $timeCreated
-     * @return Users
+     * @return User
      */
     public function setTimeCreated($timeCreated)
     {
@@ -324,7 +319,7 @@ class User implements AdvancedUserInterface, \Serializable
      * Set username
      *
      * @param string $username
-     * @return Users
+     * @return User
      */
     public function setUsername($username)
     {
@@ -355,7 +350,7 @@ class User implements AdvancedUserInterface, \Serializable
      * Set isEnabled
      *
      * @param boolean $isEnabled
-     * @return Users
+     * @return User
      */
     public function setEnabled($isEnabled)
     {
@@ -380,7 +375,7 @@ class User implements AdvancedUserInterface, \Serializable
      * Set confirmationToken
      *
      * @param string $confirmationToken
-     * @return Users
+     * @return User
      */
     public function setConfirmationToken($confirmationToken)
     {
@@ -403,7 +398,7 @@ class User implements AdvancedUserInterface, \Serializable
      * Set timePasswordResetRequested
      *
      * @param integer $timePasswordResetRequested
-     * @return Users
+     * @return User
      */
     public function setTimepasswordresetrequested($timePasswordResetRequested)
     {
