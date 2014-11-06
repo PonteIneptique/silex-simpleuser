@@ -15,8 +15,13 @@ use Doctrine\ORM\EntityRepository;
 
 use Silex\Application;
 
+use SimpleUser\UserEvents;
+use SimpleUser\UserEvent;
 
 class UserRepository extends EntityRepository implements UserProviderInterface {
+    /** @var Application */
+    protected $app;
+
     /** @var EventDispatcher */
     protected $dispatcher;
 
@@ -36,6 +41,22 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     protected $passwordStrengthValidator;
 
     // ----- UserProviderInterface -----
+    public function setApp(Application $app) {
+        $this->app = $app;
+        $this->setDispatcher($app['dispatcher']);
+    }
+
+    public function setDispatcher(EventDispatcher $dispatcher) {
+        $this->dispatcher = $dispatcher;
+    }
+
+    private function _persist(User $model) {
+
+        $this->getEntityManager()->persist($model);
+        $this->getEntityManager()->flush();
+
+        return $model;
+    }
 
     /**
      * Loads the user for the given username or email address.
@@ -152,10 +173,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
      */
     public function createUser($email, $plainPassword, $name = null, $roles = array())
     {
-
-        $userClass = $this->getUserClass();
-
-        $user = new $userClass($email);
+        $user = new User($email);
 
         if (!empty($plainPassword)) {
             $this->setUserPassword($user, $plainPassword);
@@ -167,7 +185,6 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
         if (!empty($roles)) {
             $user->setRoles($roles);
         }
-
         return $user;
     }
 
@@ -338,28 +355,9 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     {
         $this->dispatcher->dispatch(UserEvents::BEFORE_INSERT, new UserEvent($user));
 
-        $sql = 'INSERT INTO ' . $this->conn->quoteIdentifier($this->userTableName) . '
-            (email, password, salt, name, roles, time_created, username, isEnabled, confirmationToken, timePasswordResetRequested)
-            VALUES (:email, :password, :salt, :name, :roles, :timeCreated, :username, :isEnabled, :confirmationToken, :timePasswordResetRequested) ';
+        $this->_persist($user);
 
-        $params = array(
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword(),
-            'salt' => $user->getSalt(),
-            'name' => $user->getName(),
-            'roles' => implode(',', $user->getRoles()),
-            'timeCreated' => $user->getTimeCreated(),
-            'username' => $user->getRealUsername(),
-            'isEnabled' => $user->isEnabled(),
-            'confirmationToken' => $user->getConfirmationToken(),
-            'timePasswordResetRequested' => $user->getTimePasswordResetRequested(),
-        );
-
-        $this->conn->executeUpdate($sql, $params);
-
-        $user->setId($this->conn->lastInsertId());
-
-        $this->saveUserCustomFields($user);
+        //$this->saveUserCustomFields($user);
 
         $this->identityMap[$user->getId()] = $user;
 
@@ -375,34 +373,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     {
         $this->dispatcher->dispatch(UserEvents::BEFORE_UPDATE, new UserEvent($user));
 
-        $sql = 'UPDATE ' . $this->conn->quoteIdentifier($this->userTableName). '
-            SET email = :email
-            , password = :password
-            , salt = :salt
-            , name = :name
-            , roles = :roles
-            , time_created = :timeCreated
-            , username = :username
-            , isEnabled = :isEnabled
-            , confirmationToken = :confirmationToken
-            , timePasswordResetRequested = :timePasswordResetRequested
-            WHERE id = :id';
-
-        $params = array(
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword(),
-            'salt' => $user->getSalt(),
-            'name' => $user->getName(),
-            'roles' => implode(',', $user->getRoles()),
-            'timeCreated' => $user->getTimeCreated(),
-            'username' => $user->getRealUsername(),
-            'isEnabled' => $user->isEnabled(),
-            'confirmationToken' => $user->getConfirmationToken(),
-            'timePasswordResetRequested' => $user->getTimePasswordResetRequested(),
-            'id' => $user->getId(),
-        );
-
-        $this->conn->executeUpdate($sql, $params);
+        $this->_persist($user);
 
         $this->saveUserCustomFields($user);
 
@@ -414,12 +385,14 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
      */
     protected function saveUserCustomFields(User $user)
     {
+        /*
         $this->conn->executeUpdate('DELETE FROM ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' WHERE user_id = ?', array($user->getId()));
 
         foreach ($user->getCustomFields() as $attribute => $value) {
             $this->conn->executeUpdate('INSERT INTO ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' (user_id, attribute, value) VALUES (?, ?, ?) ',
                 array($user->getId(), $attribute, $value));
         }
+        */
     }
 
     /**

@@ -48,10 +48,12 @@ class UserManagerTest extends WebTestCase
             array('security.firewalls' => array('dummy-firewall' => array('form' => array())))
         );
         $app->register(new \Silex\Provider\DoctrineServiceProvider());
+
         $app['db.options'] = array(
             'driver' => 'pdo_sqlite',
-            'path' => __DIR__.'/cache/.ht.sqlite',
+            'path' => __DIR__.'/../../../app/cache/.ht.sqlite',
         );
+
         $app->register(new UserServiceProvider());
 
         /*
@@ -68,14 +70,15 @@ class UserManagerTest extends WebTestCase
     {
         $user = $this->userManager->createUser('test@example.com', 'pass');
 
-        $this->assertInstanceOf('Simpleuser\User', $user);
+        $this->assertInstanceOf('Simpleuser\Entity\User', $user);
     }
 
     public function testStoreAndFetchUser()
     {
+        echo "Works until there";
+
         $user = $this->userManager->createUser('test@example.com', 'password');
         $this->assertNull($user->getId());
-
         $this->userManager->insert($user);
         $this->assertGreaterThan(0, $user->getId());
 

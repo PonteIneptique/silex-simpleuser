@@ -10,6 +10,8 @@ use Symfony\Component\Security\Core\Exception\DisabledException;
 use InvalidArgumentException;
 use JasonGrimes\Paginator;
 
+use SimpleUser\Entity\UserRepository;
+
 /**
  * Controller with actions for handling form-based authentication and user management.
  *

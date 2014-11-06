@@ -67,7 +67,7 @@ unset($params['dbname']);
 $tmpConnection = DriverManager::getConnection($params);      
 $tmpConnection->getSchemaManager()->dropDatabase($name);  
 $tmpConnection->getSchemaManager()->createDatabase($name);
-
+echo "creatingApp";
 $em = $app['doctrine.orm.entity_manager'];
 
 // Generate testing database schema.

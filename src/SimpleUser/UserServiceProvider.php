@@ -137,13 +137,7 @@ class UserServiceProvider implements ServiceProviderInterface, ControllerProvide
             $app['user.options.init']();
 
             $userManager = $app['doctrine.orm.entity_manager']->getRepository("\\SimpleUser\\Entity\\User");
-
-            /*
-            To be updated
-            $userManager->setUserCustomFieldsTableName($app['user.options']['userCustomFieldsTableName']);
-            */
-
-           
+            $userManager->setApp($app);
             return $userManager;
         });
 

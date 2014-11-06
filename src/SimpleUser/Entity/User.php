@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @author Thibault Clerice
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="SimpleUser\Entity\UserRepository")
  * @ORM\Table(name="simple_user_user")
  */
 class User implements AdvancedUserInterface, \Serializable
@@ -52,7 +52,7 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=100)
+     * @ORM\Column(name="name", type="string", length=100, nullable=true)
      */
     private $name;
 

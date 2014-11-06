@@ -3,6 +3,7 @@
 namespace SimpleUser;
 
 use Symfony\Component\EventDispatcher\Event;
+use SimpleUser\Entity\User;
 
 class UserEvent extends Event
 {
