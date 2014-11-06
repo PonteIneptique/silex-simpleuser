@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @author Thibault Clérice
+ *
+ *	The role of this page is to provide an environment for creating the DB in a test environment.
+ *
+ */
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use SimpleUser\UserServiceProvider;
@@ -63,10 +69,10 @@ $tmpConnection->getSchemaManager()->dropDatabase($name);
 $tmpConnection->getSchemaManager()->createDatabase($name);
 
 $em = $app['doctrine.orm.entity_manager'];
+
 // Generate testing database schema.
 $classes = array();
 foreach ($app['user.model'] as $class) {
-	echo $class;
     $classes[] = $em->getClassMetadata($class);
 }
 
@@ -74,4 +80,7 @@ PersistentObject::setObjectManager($em);
 $tool = new SchemaTool($em);
 $tool->createSchema($classes);
 
-return $app;
+
+$app = null;
+
+return __DIR__ . "/app.php";

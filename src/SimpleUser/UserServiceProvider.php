@@ -119,11 +119,11 @@ class UserServiceProvider implements ServiceProviderInterface, ControllerProvide
 
 
             $isDevMode = true;
-            $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__.'/Entity'), $isDevMode);
+            $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__.'/Entity'), $isDevMode, null, null, false);
             $em = EntityManager::create($conn, $config, $em);
             return $em;
         });
-        
+
 
         $app['user.model'] = array(
             "user" => "\\SimpleUser\\Entity\\User"
@@ -138,8 +138,6 @@ class UserServiceProvider implements ServiceProviderInterface, ControllerProvide
 
             $userManager = $app['doctrine.orm.entity_manager']->getRepository("\\SimpleUser\\Entity\\User");
 
-            $userManager->setUserClass($app['user.options']['userClass']);
-            $userManager->setUsernameRequired($app['user.options']['isUsernameRequired']);
             /*
             To be updated
             $userManager->setUserCustomFieldsTableName($app['user.options']['userCustomFieldsTableName']);

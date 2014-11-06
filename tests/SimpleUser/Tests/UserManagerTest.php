@@ -33,9 +33,27 @@ class UserManagerTest extends WebTestCase
     /** @var EventDispatcher */
     protected $dispatcher;
     
+    private function generateDb() {
+        $app = require_once __DIR__ . "/../../../app/bootstrap.php";
+    }
+
     public function createApplication()
     {
-        require_once __DIR__ . "/../../../app/phpunit_bootstrap.php";
+        $this->generateDb();
+
+
+        $app = new \Silex\Application();
+
+        $app->register(new \Silex\Provider\SecurityServiceProvider(),
+            array('security.firewalls' => array('dummy-firewall' => array('form' => array())))
+        );
+        $app->register(new \Silex\Provider\DoctrineServiceProvider());
+        $app['db.options'] = array(
+            'driver' => 'pdo_sqlite',
+            'path' => __DIR__.'/cache/.ht.sqlite',
+        );
+        $app->register(new UserServiceProvider());
+
         /*
          *  Class vars
          */
