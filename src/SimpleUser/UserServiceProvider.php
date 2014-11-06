@@ -119,8 +119,7 @@ class UserServiceProvider implements ServiceProviderInterface, ControllerProvide
 
 
             $isDevMode = true;
-            $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__.'/../Entity'), $isDevMode, null, null, false);
-
+            $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__.'/../Entity'), $isDevMode);
             $em = EntityManager::create($conn, $config, $em);
             return $em;
         });

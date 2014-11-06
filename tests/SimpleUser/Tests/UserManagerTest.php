@@ -11,18 +11,14 @@ use SimpleUser\UserEvent;
 use SimpleUser\UserEvents;
 use SimpleUser\UserServiceProvider;
 
-use Silex\Application;
-use Silex\Provider;
-use Silex\Provider\DoctrineServiceProvider;
-use Silex\Provider\SecurityServiceProvider;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
-use Doctrine\ORM\Tools\SchemaTool;
 
+use Silex\WebTestCase;
 
-class UserManagerTest extends \PHPUnit_Framework_TestCase
+class UserManagerTest extends WebTestCase
 {
     /**
      * @var UserManager
@@ -36,43 +32,10 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
 
     /** @var EventDispatcher */
     protected $dispatcher;
-
-    private function generateDB(Application $app) {
-        /*
-         * Setup the Schema
-         */
-
-        $em = $app["user.doctrine.em"];
-        $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
-        $classes = array(
-            $em->getClassMetadata('SimpleUser\\Entity\\User'),
-            $em->getClassMetadata('SimpleUser\\Entity\\CustomeFields'),
-        );
-        $tool->createSchema($classes);
-
-        /*
-         *  Class vars
-         */
-        $this->em = $em;
-    }
-
-    protected function setUp()
+    
+    public function createApplication()
     {
-        $app = new Application();
-
-        $app->register(new Provider\SecurityServiceProvider(),
-            array('security.firewalls' => array('dummy-firewall' => array('form' => array())))
-        );
-        $app->register(new Provider\DoctrineServiceProvider());
-
-        $app['db'] = array( 
-            'driver' => 'pdo_sqlite',
-            'path' => __DIR__.'/../../../cache/test/.ht.sqlite',
-        );
-
-        $app->register(new UserServiceProvider());
-
-        $this->generateDB($app);;
+        require_once __DIR__ . "/../../../app/phpunit_bootstrap.php";
         /*
          *  Class vars
          */

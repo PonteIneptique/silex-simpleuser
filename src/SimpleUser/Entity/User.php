@@ -8,12 +8,12 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * User
  *
- * @ORM\Entity(repositoryClass="SimpleUser\Entity\UserRepository")
+ * \Doctrine\ORM\Mapping\Entity
  * @ORM\Table(name="simple_user_user")
  */
 class User implements AdvancedUserInterface, \Serializable
 {
-    /** 
+    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer", nullable=true)
@@ -25,44 +25,44 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=100, nullable=false, unique=true)
+     * @ORM\Column(name="email", type="string", length=100, unique=true)
      */
-    private $email = '';
+    private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="salt", type="string", length=255, nullable=false)
+     * @ORM\Column(name="salt", type="string", length=255)
      */
-    private $salt = '';
+    private $salt;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="roles", type="array")
+     */
+    private $roles;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="roles", type="string", length=255, nullable=false)
+     * @ORM\Column(name="name", type="string", length=100)
      */
-    private $roles = '';
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=100, nullable=false)
-     */
-    private $name = '';
+    private $name;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="time_created", type="integer", nullable=false)
+     * @ORM\Column(name="time_created", type="integer")
      */
-    private $timeCreated = '0';
+    private $timeCreated;
 
     /**
      * @var string
@@ -74,21 +74,21 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var boolean
      *
-     * @ORM\Column(name="isEnabled", type="boolean", nullable=false)
+     * @ORM\Column(name="is_enabled", type="boolean")
      */
     private $isEnabled = '1';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="confirmationToken", type="string", length=100, nullable=true)
+     * @ORM\Column(name="confirmation_token", type="string", length=100, nullable=true)
      */
     private $confirmationToken;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="timePasswordResetRequested", type="integer", nullable=true)
+     * @ORM\Column(name="time_password_reset_requested", type="integer", nullable=true)
      */
     private $timePasswordResetRequested;
 
