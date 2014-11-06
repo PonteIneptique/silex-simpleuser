@@ -12,14 +12,13 @@ use Doctrine\ORM\Tools\SchemaTool;
 //phpunit_bootstrap.php
 $app = new \Silex\Application();
 
-$app->register(new \Silex\Provider\SecurityServiceProvider(),
-    array('security.firewalls' => array('dummy-firewall' => array('form' => array())))
-);
+$app->register(new \Silex\Provider\SecurityServiceProvider());
+
 $app->register(new \Silex\Provider\DoctrineServiceProvider());
 
 $app['db'] = array( 
     'driver' => 'pdo_sqlite',
-    'path' => __DIR__.'/../../../cache/test/.ht.sqlite',
+    'path' => __DIR__.'/../cache/test/.ht.sqlite',
 );
 
 $app->register(new UserServiceProvider());
@@ -35,6 +34,6 @@ $em = $app["user.doctrine.em"];
 $tool = new \Doctrine\ORM\Tools\SchemaTool($em);
 $classes = array(
     $em->getClassMetadata('\\SimpleUser\\Entity\\User'),
-    $em->getClassMetadata('\\SimpleUser\\Entity\\CustomeFields'),
+    $em->getClassMetadata('\\SimpleUser\\Entity\\CustomFields'),
 );
 $tool->createSchema($classes);
