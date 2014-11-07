@@ -1,0 +1,37 @@
+PHPUnit 4.3.4 by Sebastian Bergmann.
+
+Configuration read from /home/thibault/dev/silex-simpleuser/phpunit.xml.dist
+
+...................[41;37mF[0m.[41;37mF[0m[41;37mF[0m.[41;37mF[0m.[41;37mF[0m.................
+
+Time: 1.02 seconds, Memory: 25.75Mb
+
+There were 5 failures:
+
+1) SimpleUser\Tests\UserManagerTest::testCustomUserClass
+Failed asserting that SimpleUser\Entity\User Object (...) is an instance of class "SimpleUser\Tests\CustomUser".
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:293
+
+2) SimpleUser\Tests\UserManagerTest::testSupportsSubClass
+Failed asserting that false is true.
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:336
+
+3) SimpleUser\Tests\UserManagerTest::testValidationWhenUsernameIsRequired
+Failed asserting that an array is empty.
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:349
+
+4) SimpleUser\Tests\UserManagerTest::testAfterInsertEvents
+Failed asserting that true is false.
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:388
+
+5) SimpleUser\Tests\UserManagerTest::testAfterUpdateEvents
+Failed asserting that true is false.
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:429
+[37;41m                                       [0m
+[37;41mFAILURES!                              [0m
+[37;41mTests: 44, Assertions: 84, Failures: 5.[0m

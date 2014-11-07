@@ -5,7 +5,7 @@ namespace SimpleUser;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter;
-use SimpleUser\User;
+use SimpleUser\Entity\User;
 
 class EditUserVoter implements VoterInterface
 {

@@ -3,7 +3,7 @@
 namespace SimpleUser\Tests;
 
 use SimpleUser\Mailer;
-use SimpleUser\User;
+use SimpleUser\Entity\User;
 
 class MailerTest extends \PHPUnit_Framework_TestCase
 {

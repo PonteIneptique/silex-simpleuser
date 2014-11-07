@@ -10,6 +10,8 @@ use Symfony\Component\Security\Core\Exception\DisabledException;
 use InvalidArgumentException;
 use JasonGrimes\Paginator;
 
+use SimpleUser\Entity\UserRepository;
+
 /**
  * Controller with actions for handling form-based authentication and user management.
  *
@@ -17,7 +19,7 @@ use JasonGrimes\Paginator;
  */
 class UserController
 {
-    /** @var UserManager */
+    /** @var UserRepository */
     protected $userManager;
 
     protected $templates = array(
@@ -43,10 +45,10 @@ class UserController
     /**
      * Constructor.
      *
-     * @param UserManager $userManager
+     * @param UserRepository $userManager
      * @param array $deprecated - Deprecated. No longer used.
      */
-    public function __construct(UserManager $userManager, $deprecated = null)
+    public function __construct(UserRepository $userManager, $deprecated = null)
     {
         $this->userManager = $userManager;
     }

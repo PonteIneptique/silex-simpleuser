@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleUser;
+namespace SimpleUser\Entity;
 
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
@@ -10,15 +10,16 @@ use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
-use Doctrine\DBAL\Connection;
+
+use Doctrine\ORM\EntityRepository;
+
 use Silex\Application;
 
-class UserManager implements UserProviderInterface
-{
-    /** @var Connection */
-    protected $conn;
+use SimpleUser\UserEvents;
+use SimpleUser\UserEvent;
 
-    /** @var \Silex\Application */
+class UserRepository extends EntityRepository implements UserProviderInterface {
+    /** @var Application */
     protected $app;
 
     /** @var EventDispatcher */
@@ -28,7 +29,10 @@ class UserManager implements UserProviderInterface
     protected $identityMap = array();
 
     /** @var string */
-    protected $userClass = '\SimpleUser\User';
+    protected $userClass = '\SimpleUser\Entity\User';
+
+    /** @var string */
+    protected $customFieldsClass = '\SimpleUser\Entity\CustomFields';
 
     /** @var bool */
     protected $isUsernameRequired = false;
@@ -36,26 +40,36 @@ class UserManager implements UserProviderInterface
     /** @var Callable */
     protected $passwordStrengthValidator;
 
-    /** @var string */
-    protected $userTableName = 'users';
+    protected $fieldNames = array();
 
-    /** @var string */
-    protected $userCustomFieldsTableName = 'user_custom_fields';
+    //Get the table name
+    public function getTableName() {
+        return $this->getEntityManager()->getClassMetadata($this->userClass)->getTableName();
 
-    /**
-     * Constructor.
-     *
-     * @param Connection $conn
-     * @param Application $app
-     */
-    public function __construct(Connection $conn, Application $app)
-    {
-        $this->conn = $conn;
-        $this->app = $app;
-        $this->dispatcher = $app['dispatcher'];
+    }
+
+    public function getFieldNames() {
+        return $this->getEntityManager()->getClassMetadata($this->userClass)->getFieldNames();
     }
 
     // ----- UserProviderInterface -----
+    public function setApp(Application $app) {
+        $this->app = $app;
+        $this->setDispatcher($app['dispatcher']);
+    }
+
+    public function setDispatcher(EventDispatcher $dispatcher) {
+        $this->dispatcher = $dispatcher;
+    }
+
+    private function _persist(User $user) {
+
+        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush();
+        
+
+        return $user;
+    }
 
     /**
      * Loads the user for the given username or email address.
@@ -114,7 +128,7 @@ class UserManager implements UserProviderInterface
      */
     public function supportsClass($class)
     {
-        return ($class === 'SimpleUser\User') || is_subclass_of($class, 'SimpleUser\User');
+        return ($class === 'SimpleUser\Entity\User') || is_subclass_of($class, 'SimpleUser\Entity\User');
     }
 
     // ----- End UserProviderInterface -----
@@ -172,10 +186,7 @@ class UserManager implements UserProviderInterface
      */
     public function createUser($email, $plainPassword, $name = null, $roles = array())
     {
-
-        $userClass = $this->getUserClass();
-
-        $user = new $userClass($email);
+        $user = new User($email);
 
         if (!empty($plainPassword)) {
             $this->setUserPassword($user, $plainPassword);
@@ -187,7 +198,6 @@ class UserManager implements UserProviderInterface
         if (!empty($roles)) {
             $user->setRoles($roles);
         }
-
         return $user;
     }
 
@@ -334,139 +344,17 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * Get a single User instance that matches the given criteria. If more than one User matches, the first result is returned.
-     *
-     * @param array $criteria
-     * @return User|null
-     */
-    public function findOneBy(array $criteria)
-    {
-        $users = $this->findBy($criteria);
-
-        if (empty($users)) {
-            return null;
-        }
-
-        return reset($users);
-    }
-
-    /**
-     * Find User instances that match the given criteria.
-     *
-     * @param array $criteria
-     * @param array $options An array of the following options (all optional):<pre>
-     *      limit (int|array) The maximum number of results to return, or an array of (offset, limit).
-     *      order_by (string|array) The name of the column to order by, or an array of column name and direction, ex. array(time_created, DESC)
-     * </pre>
-     * @return User[] An array of matching User instances, or an empty array if no matching users were found.
-     */
-    public function findBy(array $criteria = array(), array $options = array())
-    {
-        // Check the identity map first.
-        if (array_key_exists('id', $criteria) && array_key_exists($criteria['id'], $this->identityMap)) {
-            return array($this->identityMap[$criteria['id']]);
-        }
-
-        list ($common_sql, $params) = $this->createCommonFindSql($criteria);
-
-        $sql = 'SELECT * ' . $common_sql;
-
-        if (array_key_exists('order_by', $options)) {
-            list ($order_by, $order_dir) = is_array($options['order_by']) ? $options['order_by'] : array($options['order_by']);
-            $sql .= 'ORDER BY ' . $this->conn->quoteIdentifier($order_by) . ' ' . ($order_dir == 'DESC' ? 'DESC' : 'ASC') . ' ';
-        }
-        if (array_key_exists('limit', $options)) {
-            list ($offset, $limit) = is_array($options['limit']) ? $options['limit'] : array(0, $options['limit']);
-            $sql .=   ' LIMIT ' . (int) $limit . ' ' .' OFFSET ' . (int) $offset ;
-        }
-
-        $data = $this->conn->fetchAll($sql, $params);
-
-        $users = array();
-        foreach ($data as $userData) {
-            if (array_key_exists($userData['id'], $this->identityMap)) {
-                $user = $this->identityMap[$userData['id']];
-            } else {
-                $userData['customFields'] = $this->getUserCustomFields($userData['id']);
-                $user = $this->hydrateUser($userData);
-                $this->identityMap[$user->getId()] = $user;
-            }
-            $users[] = $user;
-        }
-
-        return $users;
-    }
-
-    /**
-     * @param $userId
-     * @return array
-     */
-    protected function getUserCustomFields($userId)
-    {
-        $customFields = array();
-
-        $rows = $this->conn->fetchAll('SELECT * FROM ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' WHERE user_id = ?', array($userId));
-        foreach ($rows as $row) {
-            $customFields[$row['attribute']] = $row['value'];
-        }
-
-        return $customFields;
-    }
-
-    /**
-     * Get SQL query fragment common to both find and count querires.
-     *
-     * @param array $criteria
-     * @return array An array of SQL and query parameters, in the form array($sql, $params)
-     */
-    protected function createCommonFindSql(array $criteria = array())
-    {
-        $params = array();
-
-        $sql = 'FROM ' . $this->conn->quoteIdentifier($this->userTableName). ' ';
-        // JOIN on custom fields, if needed.
-        if (array_key_exists('customFields', $criteria)) {
-            $i = 0;
-            foreach ($criteria['customFields'] as $attribute => $value) {
-                $i++;
-                $alias = 'custom' . $i;
-                $sql .= 'JOIN ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' ' . $alias . ' ';
-                $sql .= 'ON ' . $this->conn->quoteIdentifier($this->userTableName). '.id = ' . $alias . '.user_id ';
-                $sql .= 'AND ' . $alias . '.attribute = :attribute' . $i . ' ';
-                $sql .= 'AND ' . $alias . '.value = :value' . $i . ' ';
-                $params['attribute' . $i] = $attribute;
-                $params['value' . $i] = $value;
-            }
-        }
-
-        $first_crit = true;
-        foreach ($criteria as $key => $val) {
-            if ($key == 'customFields') {
-                continue;
-            } else {
-                $sql .= ($first_crit ? 'WHERE' : 'AND') . ' ' . $key . ' = :' . $key . ' ';
-                $params[$key] = $val;
-            }
-            $first_crit = false;
-        }
-
-        return array ($sql, $params);
-    }
-
-    /**
-     * Count users that match the given criteria.
-     *
-     * @param array $criteria
-     * @return int The number of users that match the criteria.
-     */
+    * Count users that match the given criteria.
+    *
+    * @param array $criteria
+    * @return int The number of users that match the criteria.
+    */
     public function findCount(array $criteria = array())
     {
-        list ($common_sql, $params) = $this->createCommonFindSql($criteria);
-
-        $sql = 'SELECT COUNT(*) ' . $common_sql;
-
-        return $this->conn->fetchColumn($sql, $params) ?: 0;
+        $users = $this->findBy($criteria);
+        return count($users);
     }
+
 
     /**
      * Insert a new User instance into the database.
@@ -477,28 +365,7 @@ class UserManager implements UserProviderInterface
     {
         $this->dispatcher->dispatch(UserEvents::BEFORE_INSERT, new UserEvent($user));
 
-        $sql = 'INSERT INTO ' . $this->conn->quoteIdentifier($this->userTableName) . '
-            (email, password, salt, name, roles, time_created, username, isEnabled, confirmationToken, timePasswordResetRequested)
-            VALUES (:email, :password, :salt, :name, :roles, :timeCreated, :username, :isEnabled, :confirmationToken, :timePasswordResetRequested) ';
-
-        $params = array(
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword(),
-            'salt' => $user->getSalt(),
-            'name' => $user->getName(),
-            'roles' => implode(',', $user->getRoles()),
-            'timeCreated' => $user->getTimeCreated(),
-            'username' => $user->getRealUsername(),
-            'isEnabled' => $user->isEnabled(),
-            'confirmationToken' => $user->getConfirmationToken(),
-            'timePasswordResetRequested' => $user->getTimePasswordResetRequested(),
-        );
-
-        $this->conn->executeUpdate($sql, $params);
-
-        $user->setId($this->conn->lastInsertId());
-
-        $this->saveUserCustomFields($user);
+        $this->_persist($user);
 
         $this->identityMap[$user->getId()] = $user;
 
@@ -514,34 +381,7 @@ class UserManager implements UserProviderInterface
     {
         $this->dispatcher->dispatch(UserEvents::BEFORE_UPDATE, new UserEvent($user));
 
-        $sql = 'UPDATE ' . $this->conn->quoteIdentifier($this->userTableName). '
-            SET email = :email
-            , password = :password
-            , salt = :salt
-            , name = :name
-            , roles = :roles
-            , time_created = :timeCreated
-            , username = :username
-            , isEnabled = :isEnabled
-            , confirmationToken = :confirmationToken
-            , timePasswordResetRequested = :timePasswordResetRequested
-            WHERE id = :id';
-
-        $params = array(
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword(),
-            'salt' => $user->getSalt(),
-            'name' => $user->getName(),
-            'roles' => implode(',', $user->getRoles()),
-            'timeCreated' => $user->getTimeCreated(),
-            'username' => $user->getRealUsername(),
-            'isEnabled' => $user->isEnabled(),
-            'confirmationToken' => $user->getConfirmationToken(),
-            'timePasswordResetRequested' => $user->getTimePasswordResetRequested(),
-            'id' => $user->getId(),
-        );
-
-        $this->conn->executeUpdate($sql, $params);
+        $this->_persist($user);
 
         $this->saveUserCustomFields($user);
 
@@ -553,12 +393,7 @@ class UserManager implements UserProviderInterface
      */
     protected function saveUserCustomFields(User $user)
     {
-        $this->conn->executeUpdate('DELETE FROM ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' WHERE user_id = ?', array($user->getId()));
-
-        foreach ($user->getCustomFields() as $attribute => $value) {
-            $this->conn->executeUpdate('INSERT INTO ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' (user_id, attribute, value) VALUES (?, ?, ?) ',
-                array($user->getId(), $attribute, $value));
-        }
+        $this->_persist($user);
     }
 
     /**
@@ -572,8 +407,8 @@ class UserManager implements UserProviderInterface
 
         $this->clearIdentityMap($user);
 
-        $this->conn->executeUpdate('DELETE FROM ' . $this->conn->quoteIdentifier($this->userTableName). ' WHERE id = ?', array($user->getId()));
-        $this->conn->executeUpdate('DELETE FROM ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' WHERE user_id = ?', array($user->getId()));
+        $this->getEntityManager()->remove($user);
+        $this->getEntityManager()->flush();
 
         $this->dispatcher->dispatch(UserEvents::AFTER_DELETE, new UserEvent($user));
     }
@@ -641,7 +476,7 @@ class UserManager implements UserProviderInterface
     }
 
     /**
-     * @param string $userClass The class to use for the user model. Must extend SimpleUser\User.
+     * @param string $userClass The class to use for the user model. Must extend SimpleUser\Entity\User.
      */
     public function setUserClass($userClass)
     {
@@ -703,5 +538,64 @@ class UserManager implements UserProviderInterface
 
             $this->app['user'] = $user;
         }
+    }
+
+    private function augmentedCritera(array $criteria) {
+        if(array_key_exists("customFields", $criteria) && count($criteria["customFields"]) > 0) {
+            $tuples = array();
+            foreach ($criteria["customFields"] as $key => $value) {
+                $tuples[] = $key . " " . $value;
+            }
+
+            $qb = $this->getEntityManager()->createQueryBuilder();
+
+            $fields = $qb   ->select("c")
+                            ->from($this->customFieldsClass, "c")
+                            ->where("CONCAT(CONCAT(c.attribute, ' '), c.value) IN (:tuples)")
+                            ->setParameter("tuples", $tuples)
+                            ->getQuery()
+                            ->getResult();
+
+            $ids = array();
+            $criteria_id = array();
+
+            foreach($fields as $field) {
+                $userId = $field->getUser()->getId();
+                if(!array_key_exists($userId, $ids)) {
+                    $ids[$userId] = array();
+                }
+                $ids[$userId][] = $field->getId();
+            }
+
+            foreach($ids as $id => $match) {
+                if(!in_array($id, $criteria_id) && count($match) === count($criteria["customFields"])) {
+                    $criteria_id[] = $id;
+                }
+            }
+
+            if(array_key_exists("id", $criteria)) {
+                $criteria["id"] = array_intersect($criteria_id, array($criteria["id"]));
+            } else {
+                $criteria["id"] = $criteria_id;
+            }
+            unset($criteria["customFields"]);
+        }
+        return $criteria;
+    }
+
+    /**
+     * Augmented version of findBy to procure a simple way to ask for customFields relationships
+     *
+     *
+     */
+
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null) {
+        $criteria = $this->augmentedCritera($criteria);
+        return parent::findBy($criteria, $orderBy, $limit, $offset);
+    }
+
+    public function findOneBy(array $criteria) {
+        $criteria = $this->augmentedCritera($criteria);
+        return parent::findOneBy($criteria);
     }
 }

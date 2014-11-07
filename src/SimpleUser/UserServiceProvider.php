@@ -12,6 +12,14 @@ use Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
+use SimpleUser\Entity\UserRepository;
+use SimpleUser\Entity\User;
+
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use Doctrine\Common\Annotations\AnnotationReader;
+
 class UserServiceProvider implements ServiceProviderInterface, ControllerProviderInterface
 {
     /**
@@ -61,7 +69,7 @@ class UserServiceProvider implements ServiceProviderInterface, ControllerProvide
             ),
 
             // Set this to use a custom User class.
-            'userClass' => 'SimpleUser\User',
+            'userClass' => 'SimpleUser\Entity\User',
 
             // Whether to require that users have a username (default: false).
             // By default, users sign in with their email address instead.
@@ -105,6 +113,23 @@ class UserServiceProvider implements ServiceProviderInterface, ControllerProvide
             $app['user.options'] = $options;
         });
 
+        $app['doctrine.orm.entity_manager'] = $app->share(function ($app) {
+            $conn = $app['dbs']['default'];
+            $em = $app['dbs.event_manager']['default'];
+
+
+            $isDevMode = true;
+            $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__.'/Entity'), $isDevMode, null, null, false);
+            $em = EntityManager::create($conn, $config, $em);
+            return $em;
+        });
+
+
+        $app['user.model'] = array(
+            "user" => "\\SimpleUser\\Entity\\User",
+            "customFields" => "\\SimpleUser\\Entity\\CustomFields"
+        );
+
         // Token generator.
         $app['user.tokenGenerator'] = $app->share(function($app) { return new TokenGenerator($app['logger']); });
 
@@ -112,12 +137,8 @@ class UserServiceProvider implements ServiceProviderInterface, ControllerProvide
         $app['user.manager'] = $app->share(function($app) {
             $app['user.options.init']();
 
-            $userManager = new UserManager($app['db'], $app);
-            $userManager->setUserClass($app['user.options']['userClass']);
-            $userManager->setUsernameRequired($app['user.options']['isUsernameRequired']);
-            $userManager->setUserTableName($app['user.options']['userTableName']);
-            $userManager->setUserCustomFieldsTableName($app['user.options']['userCustomFieldsTableName']);
-
+            $userManager = $app['doctrine.orm.entity_manager']->getRepository("\\SimpleUser\\Entity\\User");
+            $userManager->setApp($app);
             return $userManager;
         });
 

@@ -3,16 +3,20 @@
 namespace SimpleUser\Tests;
 
 use SimpleUser\TokenGenerator;
-use SimpleUser\User;
+
+use SimpleUser\Entity\User;
+use SimpleUser\UserProvider;
+
 use SimpleUser\UserEvent;
 use SimpleUser\UserEvents;
-use SimpleUser\UserManager;
-use Silex\Application;
-use Silex\Provider\DoctrineServiceProvider;
-use Silex\Provider\SecurityServiceProvider;
-use Doctrine\DBAL\Connection;
+use SimpleUser\UserServiceProvider;
+
+
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+
+
+use Silex\WebTestCase;
 
 class UserManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,36 +32,71 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
 
     /** @var EventDispatcher */
     protected $dispatcher;
+    
+    private function generateDb() {
+        $erase = true;
+        $app = require_once __DIR__ . "/../../../app/bootstrap.php";
+    }
+
+    private function setApp() {
+        $app = new \Silex\Application();
+
+        $app->register(new \Silex\Provider\SecurityServiceProvider(),
+            array('security.firewalls' => array('dummy-firewall' => array('form' => array())))
+        );
+        $app->register(new \Silex\Provider\DoctrineServiceProvider());
+
+        $app['db.options'] = array(
+            'driver' => 'pdo_sqlite',
+            'path' => __DIR__.'/../../../cache/.ht.sqlite',
+        );
+
+        $app->register(new UserServiceProvider());
+
+        /*
+         *  Class vars
+         */
+        $this->app = $app;
+        $this->userManager = $app["user.manager"];
+        $this->conn = $app['db'];
+        $this->dispatcher = $app['dispatcher'];
+    }
+
+    public function tearDown() {
+        $connection = $this->conn;
+
+        foreach($this->app["user.model"] as $model) {
+            $repo = $this->app['doctrine.orm.entity_manager']->getRepository($model);
+            $connection->beginTransaction();
+            try {
+                $connection->query('DELETE FROM '.$repo->getTableName());
+                $connection->commit();
+            } catch (Exception $e) {
+                //print_r($e);
+            }
+        }
+    }
+
 
     public function setUp()
     {
-        $app = new Application();
-        $app->register(new SecurityServiceProvider());
-        $app->register(new DoctrineServiceProvider(), array(
-            'db.options' => array(
-                'driver' => 'pdo_sqlite',
-                'memory' => true,
-            ),
-        ));
-        $app['db']->executeUpdate(file_get_contents(__DIR__ . '/../../../sql/sqlite.sql'));
+        $this->generateDb();
+        $this->setApp();
 
-        $this->userManager = new UserManager($app['db'], $app);
-        $this->conn = $app['db'];
-        $this->dispatcher = $app['dispatcher'];
     }
 
     public function testCreateUser()
     {
         $user = $this->userManager->createUser('test@example.com', 'pass');
 
-        $this->assertInstanceOf('Simpleuser\User', $user);
+        $this->assertInstanceOf('Simpleuser\Entity\User', $user);
     }
 
     public function testStoreAndFetchUser()
     {
+
         $user = $this->userManager->createUser('test@example.com', 'password');
         $this->assertNull($user->getId());
-
         $this->userManager->insert($user);
         $this->assertGreaterThan(0, $user->getId());
 
@@ -95,20 +134,21 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
         $user = $this->userManager->createUser('test@example.com', 'pass');
         $user->setCustomField('field1', 'foo');
         $user->setCustomField('field2', 'bar');
-
+        
         $this->userManager->insert($user);
 
         $storedUser = $this->userManager->getUser($user->getId());
+
         $this->assertEquals('foo', $storedUser->getCustomField('field1'));
         $this->assertEquals('bar', $storedUser->getCustomField('field2'));
 
         // Search by two custom fields.
         $foundUser = $this->userManager->findOneBy(array('customFields' => array('field1' => 'foo', 'field2' => 'bar')));
-        $this->assertEquals($user, $foundUser);
+        $this->assertEquals($storedUser, $foundUser);
 
         // Search by one custom field and one standard property.
         $foundUser = $this->userManager->findOneBy(array('id' => $user->getId(), 'customFields' => array('field2' => 'bar')));
-        $this->assertEquals($user, $foundUser);
+        $this->assertEquals($storedUser, $foundUser);
 
         // Failed search returns null.
         $foundUser = $this->userManager->findOneBy(array('customFields' => array('field1' => 'foo', 'field2' => 'does-not-exist')));
@@ -234,7 +274,9 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $numResults);
         $this->assertEquals($user1, reset($results));
 
-        $criteria = array('customFields' => array($customField => $customVal));
+        $criteria = array('customFields' => array(
+            $customField => $customVal
+        ));
         $results = $this->userManager->findBy($criteria);
         $numResults = $this->userManager->findCount($criteria);
         $this->assertCount(2, $results);
