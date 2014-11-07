@@ -636,18 +636,45 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param CustomField $customField
+     * @param string $attribute
      * 
      * @return bool
      */
-    public function hasCustomField(CustomFields $customField)
+    public function hasCustomField($attribute)
     {
-        foreach(this->customField as $field) {
-            if($customField === $field){
+        foreach($this->customFields as $field) {
+            if($attribute === $field->getAttribute()){
                 return true;
             }
         }
         
         return false;
+    }
+
+
+    /**
+     * @param string $attribute
+     * 
+     * @return bool
+     */
+    public function getCustomField($attribute)
+    {
+        foreach($this->customFields as $field) {
+            if($attribute === $field->getAttribute()){
+                return $field->getValue();
+            }
+        }
+        
+        return false;
+    }
+
+    /**
+     * @param string $attribute
+     * @param string $value
+     * 
+     * @return bool
+     */
+    public function setCustomField($attribute, $value) {
+        $this->addCustomFields(new CustomFields($this, $attribute, $value));
     }
 }

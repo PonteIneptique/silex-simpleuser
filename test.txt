@@ -1,0 +1,1116 @@
+PHPUnit 4.3.4 by Sebastian Bergmann.
+
+Configuration read from /home/thibault/dev/silex-simpleuser/phpunit.xml.dist
+
+.......Array
+(
+    [id] => 1
+)
+.Array
+(
+    [id] => 1
+)
+.Array
+(
+    [email] => test@example.com
+)
+Array
+(
+    [email] => test@example.com
+)
+[41;37mF[0mArray
+(
+    [id] => 1
+)
+HERE0Array
+(
+)
+DEAD.Array
+(
+    [email] => test@example.com
+)
+.Array
+(
+    [username] => foo
+)
+.Array
+(
+    [email] => does-not-exist@example.com
+)
+......2Array
+(
+    [customFields] => Array
+        (
+            [foo] => bar
+        )
+
+    [id] => Array
+        (
+            [0] => 1
+            [1] => 2
+        )
+
+)
+2Array
+(
+    [customFields] => Array
+        (
+            [foo] => bar
+        )
+
+    [id] => Array
+        (
+            [0] => 1
+            [1] => 2
+        )
+
+)
+[41;37mF[0m.Array
+(
+    [id] => 1
+)
+[41;37mF[0mArray
+(
+    [id] => 1
+)
+[41;37mF[0m.Array
+(
+    [id] => 1
+)
+[41;37mF[0mArray
+(
+    [id] => 1
+)
+.Array
+(
+    [id] => 1
+)
+[41;37mF[0mArray
+(
+    [id] => 1
+)
+.................
+
+Time: 837 ms, Memory: 24.25Mb
+
+There were 6 failures:
+
+1) SimpleUser\Tests\UserManagerTest::testCustomFields
+Failed asserting that SimpleUser\Entity\User Object &00000000678be2b9000000003fdd7956 (
+    'id' => 1
+    'email' => 'test@example.com'
+    'password' => 'QgupWFDCL6Ld6/TWm4yF/vHt/8k9BqcP68UP8rsoT57kFxCcylPgJBgGKGSxU13rw03+vQT2Y7UwDOXLViVpSw=='
+    'salt' => 'e4pjszja8944w884o4kcw84k8cs8cco'
+    'roles' => null
+    'name' => null
+    'timeCreated' => 1415378350
+    'username' => null
+    'isEnabled' => true
+    'confirmationToken' => null
+    'timePasswordResetRequested' => null
+    'customFields' => Doctrine\ORM\PersistentCollection Object &00000000678be2b0000000003fdd7956 (
+        'snapshot' => Array &0 (
+            0 => SimpleUser\Entity\CustomFields Object &00000000678be2b5000000003fdd7956 (
+                'id' => 1
+                'user' => SimpleUser\Entity\User Object &00000000678be2b9000000003fdd7956
+                'attribute' => 'field1'
+                'value' => 'foo'
+            )
+            1 => SimpleUser\Entity\CustomFields Object &00000000678be2b2000000003fdd7956 (
+                'id' => 2
+                'user' => SimpleUser\Entity\User Object &00000000678be2b9000000003fdd7956
+                'attribute' => 'field2'
+                'value' => 'bar'
+            )
+        )
+        'owner' => SimpleUser\Entity\User Object &00000000678be2b9000000003fdd7956
+        'association' => Array &0
+        'em' => Doctrine\ORM\EntityManager Object &00000000678be2f3000000003fdd7956 (
+            'config' => Doctrine\ORM\Configuration Object &00000000678be2fd000000003fdd7956 (
+                '_attributes' => Array &1 (
+                    'metadataCacheImpl' => Doctrine\Common\Cache\ArrayCache Object &00000000678be2fc000000003fdd7956 (
+                        'data' => Array &2 (
+                            'DoctrineNamespaceCacheKey[dc2_d42b9c57d24cf5db3bd8d332dc35437f_]' => 1
+                            'dc2_d42b9c57d24cf5db3bd8d332dc35437f_[SimpleUser\Entity\User$CLASSMETADATA][1]' => Doctrine\ORM\Mapping\ClassMetadata Object &00000000678be288000000003fdd7956 (
+                                'name' => 'SimpleUser\Entity\User'
+                                'namespace' => 'SimpleUser\Entity'
+                                'rootEntityName' => 'SimpleUser\Entity\User'
+                                'customGeneratorDefinition' => null
+                                'customRepositoryClassName' => 'SimpleUser\Entity\UserRepository'
+                                'isMappedSuperclass' => false
+                                'parentClasses' => Array &3 ()
+                                'subClasses' => Array &3
+                                'namedQueries' => Array &3
+                                'namedNativeQueries' => Array &3
+                                'sqlResultSetMappings' => Array &3
+                                'identifier' => Array &3
+                                'inheritanceType' => 1
+                                'generatorType' => 4
+                                'fieldMappings' => Array &3
+                                'fieldNames' => Array &3
+                                'columnNames' => Array &3
+                                'discriminatorValue' => null
+                                'discriminatorMap' => Array &3
+                                'discriminatorColumn' => null
+                                'table' => Array &3
+                                'lifecycleCallbacks' => Array &3
+                                'entityListeners' => Array &3
+                                'associationMappings' => Array &3
+                                'isIdentifierComposite' => false
+                                'containsForeignIdentifier' => false
+                                'idGenerator' => Doctrine\ORM\Id\IdentityGenerator Object &00000000678be298000000003fdd7956 (
+                                    'sequenceName' => null
+                                )
+                                'sequenceGeneratorDefinition' => null
+                                'tableGeneratorDefinition' => null
+                                'changeTrackingPolicy' => 1
+                                'isVersioned' => null
+                                'versionField' => null
+                                'reflClass' => ReflectionClass Object &00000000678be29b000000003fdeabb6 (
+                                    'name' => 'SimpleUser\Entity\User'
+                                )
+                                'isReadOnly' => false
+                                'namingStrategy' => Doctrine\ORM\Mapping\DefaultNamingStrategy Object &00000000678be289000000003fdd7956 ()
+                                'reflFields' => Array &3
+                                '_prototype' => null
+                            )
+                            'dc2_d42b9c57d24cf5db3bd8d332dc35437f_[SimpleUser\Entity\CustomFields$CLASSMETADATA][1]' => Doctrine\ORM\Mapping\ClassMetadata Object &00000000678be2b1000000003fdd7956 (
+                                'name' => 'SimpleUser\Entity\CustomFields'
+                                'namespace' => 'SimpleUser\Entity'
+                                'rootEntityName' => 'SimpleUser\Entity\CustomFields'
+                                'customGeneratorDefinition' => null
+                                'customRepositoryClassName' => 'SimpleUser\Entity\CustomFieldsRepository'
+                                'isMappedSuperclass' => false
+                                'parentClasses' => Array &4 ()
+                                'subClasses' => Array &4
+                                'namedQueries' => Array &4
+                                'namedNativeQueries' => Array &4
+                                'sqlResultSetMappings' => Array &4
+                                'identifier' => Array &4
+                                'inheritanceType' => 1
+                                'generatorType' => 4
+                                'fieldMappings' => Array &4
+                                'fieldNames' => Array &4
+                                'columnNames' => Array &4
+                                'discriminatorValue' => null
+                                'discriminatorMap' => Array &4
+                                'discriminatorColumn' => null
+                                'table' => Array &4
+                                'lifecycleCallbacks' => Array &4
+                                'entityListeners' => Array &4
+                                'associationMappings' => Array &4
+                                'isIdentifierComposite' => false
+                                'containsForeignIdentifier' => false
+                                'idGenerator' => Doctrine\ORM\Id\IdentityGenerator Object &00000000678be248000000003fdd7956 (
+                                    'sequenceName' => null
+                                )
+                                'sequenceGeneratorDefinition' => null
+                                'tableGeneratorDefinition' => null
+                                'changeTrackingPolicy' => 1
+                                'isVersioned' => null
+                                'versionField' => null
+                                'reflClass' => ReflectionClass Object &00000000678be24b000000003fdeabb6 (
+                                    'name' => 'SimpleUser\Entity\CustomFields'
+                                )
+                                'isReadOnly' => false
+                                'namingStrategy' => Doctrine\ORM\Mapping\DefaultNamingStrategy Object &00000000678be289000000003fdd7956
+                                'reflFields' => Array &4
+                                '_prototype' => null
+                            )
+                        )
+                        'namespace' => 'dc2_d42b9c57d24cf5db3bd8d332dc35437f_'
+                        'namespaceVersion' => 1
+                    )
+                    'queryCacheImpl' => Doctrine\Common\Cache\ArrayCache Object &00000000678be2fc000000003fdd7956
+                    'resultCacheImpl' => Doctrine\Common\Cache\ArrayCache Object &00000000678be2fc000000003fdd7956
+                    'proxyDir' => '/tmp'
+                    'proxyNamespace' => 'DoctrineProxies'
+                    'autoGenerateProxyClasses' => true
+                    'metadataDriverImpl' => Doctrine\ORM\Mapping\Driver\AnnotationDriver Object &00000000678be2fa000000003fdd7956 (
+                        'entityAnnotationClasses' => Array &5 (
+                            'Doctrine\ORM\Mapping\Entity' => 1
+                            'Doctrine\ORM\Mapping\MappedSuperclass' => 2
+                        )
+                        'reader' => Doctrine\Common\Annotations\CachedReader Object &00000000678be2fb000000003fdd7956 (
+                            'delegate' => Doctrine\Common\Annotations\AnnotationReader Object &00000000678be2f8000000003fdd7956 (
+                                'parser' => Doctrine\Common\Annotations\DocParser Object &00000000678be2f9000000003fdd7956 (
+                                    'lexer' => Doctrine\Common\Annotations\DocLexer Object &00000000678be2f6000000003fdd7956 (
+                                        'noCase' => Array &6 (
+                                            '@' => 101
+                                            ',' => 104
+                                            '(' => 109
+                                            ')' => 103
+                                            '{' => 108
+                                            '}' => 102
+                                            '=' => 105
+                                            ':' => 112
+                                            '\' => 107
+                                        )
+                                        'withCase' => Array &6
+                                        'tokens' => Array &6
+                                        'position' => 22
+                                        'peek' => 0
+                                        'lookahead' => null
+                                        'token' => Array &6
+                                    )
+                                    'target' => 4
+                                    'isNestedAnnotation' => true
+                                    'imports' => Array &7 (
+                                        'ignoreannotation' => 'Doctrine\Common\Annotations\Annotation\IgnoreAnnotation'
+                                        'orm' => 'Doctrine\ORM\Mapping'
+                                        '__NAMESPACE__' => 'SimpleUser\Entity'
+                                    )
+                                    'classExists' => Array &7
+                                    'ignoreNotImportedAnnotations' => false
+                                    'namespaces' => Array &7
+                                    'ignoredAnnotationNames' => Array &7
+                                    'context' => 'property SimpleUser\Entity\CustomFields::$value'
+                                )
+                                'preParser' => Doctrine\Common\Annotations\DocParser Object &00000000678be2f7000000003fdd7956 (
+                                    'lexer' => Doctrine\Common\Annotations\DocLexer Object &00000000678be2f4000000003fdd7956 (
+                                        'noCase' => Array &8 (
+                                            '@' => 101
+                                            ',' => 104
+                                            '(' => 109
+                                            ')' => 103
+                                            '{' => 108
+                                            '}' => 102
+                                            '=' => 105
+                                            ':' => 112
+                                            '\' => 107
+                                        )
+                                        'withCase' => Array &8
+                                        'tokens' => Array &8
+                                        'position' => 14
+                                        'peek' => 0
+                                        'lookahead' => null
+                                        'token' => Array &8
+                                    )
+                                    'target' => null
+                                    'isNestedAnnotation' => false
+                                    'imports' => Array &9 (
+                                        'ignoreannotation' => 'Doctrine\Common\Annotations\Annotation\IgnoreAnnotation'
+                                    )
+                                    'classExists' => Array &9
+                                    'ignoreNotImportedAnnotations' => true
+                                    'namespaces' => Array &9
+                                    'ignoredAnnotationNames' => Array &9
+                                    'context' => 'class SimpleUser\Entity\CustomFields'
+                                )
+                                'phpParser' => Doctrine\Common\Annotations\PhpParser Object &00000000678be2f5000000003fdd7956 ()
+                                'imports' => Array &10 (
+                                    'SimpleUser\Entity\User' => Array &11 (
+                                        'ignoreannotation' => 'Doctrine\Common\Annotations\Annotation\IgnoreAnnotation'
+                                        'advanceduserinterface' => 'Symfony\Component\Security\Core\User\AdvancedUserInterface'
+                                        'orm' => 'Doctrine\ORM\Mapping'
+                                        'arraycollection' => 'Doctrine\Common\Collections\ArrayCollection'
+                                        '__NAMESPACE__' => 'SimpleUser\Entity'
+                                    )
+                                    'SimpleUser\Entity\CustomFields' => Array &12 (
+                                        'ignoreannotation' => 'Doctrine\Common\Annotations\Annotation\IgnoreAnnotation'
+                                        'orm' => 'Doctrine\ORM\Mapping'
+                                        '__NAMESPACE__' => 'SimpleUser\Entity'
+                                    )
+                                )
+                                'ignoredAnnotationNames' => Array &10
+                            )
+                            'cache' => Doctrine\Common\Cache\ArrayCache Object &00000000678be2f2000000003fdd7956 (
+                                'data' => Array &13 (
+                                    'DoctrineNamespaceCacheKey[]' => 1
+                                    '[SimpleUser\Entity\User@[Annot]][1]' => Array &14 (
+                                        0 => Doctrine\ORM\Mapping\Entity Object &00000000678be287000000003fdd7956 (
+                                            'repositoryClass' => 'SimpleUser\Entity\UserRepository'
+                                            'readOnly' => false
+                                        )
+                                        1 => Doctrine\ORM\Mapping\Table Object &00000000678be284000000003fdd7956 (
+                                            'name' => 'simple_user_user'
+                                            'schema' => null
+                                            'indexes' => null
+                                            'uniqueConstraints' => null
+                                            'options' => Array &15 ()
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\User$id@[Annot]][1]' => Array &16 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be295000000003fdd7956 (
+                                            'name' => 'id'
+                                            'type' => 'integer'
+                                            'length' => null
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => false
+                                            'nullable' => false
+                                            'options' => Array &17 ()
+                                            'columnDefinition' => null
+                                        )
+                                        1 => Doctrine\ORM\Mapping\Id Object &00000000678be294000000003fdd7956 ()
+                                        2 => Doctrine\ORM\Mapping\GeneratedValue Object &00000000678be297000000003fdd7956 (
+                                            'strategy' => 'IDENTITY'
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\User$email@[Annot]][1]' => Array &18 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be291000000003fdd7956 (
+                                            'name' => 'email'
+                                            'type' => 'string'
+                                            'length' => 100
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => true
+                                            'nullable' => false
+                                            'options' => Array &19 ()
+                                            'columnDefinition' => null
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\User$password@[Annot]][1]' => Array &20 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be292000000003fdd7956 (
+                                            'name' => 'password'
+                                            'type' => 'string'
+                                            'length' => 255
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => false
+                                            'nullable' => false
+                                            'options' => Array &21 ()
+                                            'columnDefinition' => null
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\User$salt@[Annot]][1]' => Array &22 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be2ae000000003fdd7956 (
+                                            'name' => 'salt'
+                                            'type' => 'string'
+                                            'length' => 255
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => false
+                                            'nullable' => false
+                                            'options' => Array &23 ()
+                                            'columnDefinition' => null
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\User$roles@[Annot]][1]' => Array &24 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be293000000003fdd7956 (
+                                            'name' => 'roles'
+                                            'type' => 'array'
+                                            'length' => null
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => false
+                                            'nullable' => false
+                                            'options' => Array &25 ()
+                                            'columnDefinition' => null
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\User$name@[Annot]][1]' => Array &26 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be2ad000000003fdd7956 (
+                                            'name' => 'name'
+                                            'type' => 'string'
+                                            'length' => 100
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => false
+                                            'nullable' => true
+                                            'options' => Array &27 ()
+                                            'columnDefinition' => null
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\User$timeCreated@[Annot]][1]' => Array &28 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be2af000000003fdd7956 (
+                                            'name' => 'time_created'
+                                            'type' => 'integer'
+                                            'length' => null
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => false
+                                            'nullable' => false
+                                            'options' => Array &29 ()
+                                            'columnDefinition' => null
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\User$username@[Annot]][1]' => Array &30 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be2a8000000003fdd7956 (
+                                            'name' => 'username'
+                                            'type' => 'string'
+                                            'length' => 100
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => true
+                                            'nullable' => true
+                                            'options' => Array &31 ()
+                                            'columnDefinition' => null
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\User$isEnabled@[Annot]][1]' => Array &32 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be2aa000000003fdd7956 (
+                                            'name' => 'is_enabled'
+                                            'type' => 'boolean'
+                                            'length' => null
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => false
+                                            'nullable' => false
+                                            'options' => Array &33 ()
+                                            'columnDefinition' => null
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\User$confirmationToken@[Annot]][1]' => Array &34 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be2a9000000003fdd7956 (
+                                            'name' => 'confirmation_token'
+                                            'type' => 'string'
+                                            'length' => 100
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => false
+                                            'nullable' => true
+                                            'options' => Array &35 ()
+                                            'columnDefinition' => null
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\User$timePasswordResetRequested@[Annot]][1]' => Array &36 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be2ab000000003fdd7956 (
+                                            'name' => 'time_password_reset_requested'
+                                            'type' => 'integer'
+                                            'length' => null
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => false
+                                            'nullable' => true
+                                            'options' => Array &37 ()
+                                            'columnDefinition' => null
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\User$customFields@[Annot]][1]' => Array &38 (
+                                        0 => Doctrine\ORM\Mapping\OneToMany Object &00000000678be2a6000000003fdd7956 (
+                                            'mappedBy' => 'User'
+                                            'targetEntity' => 'CustomFields'
+                                            'cascade' => Array &39 (
+                                                0 => 'all'
+                                            )
+                                            'fetch' => 'LAZY'
+                                            'orphanRemoval' => false
+                                            'indexBy' => null
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\CustomFields@[Annot]][1]' => Array &40 (
+                                        0 => Doctrine\ORM\Mapping\Table Object &00000000678be24f000000003fdd7956 (
+                                            'name' => 'user_custom_fields'
+                                            'schema' => null
+                                            'indexes' => null
+                                            'uniqueConstraints' => null
+                                            'options' => Array &41 ()
+                                        )
+                                        1 => Doctrine\ORM\Mapping\Entity Object &00000000678be24c000000003fdd7956 (
+                                            'repositoryClass' => 'SimpleUser\Entity\CustomFieldsRepository'
+                                            'readOnly' => false
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\CustomFields$id@[Annot]][1]' => Array &42 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be245000000003fdd7956 (
+                                            'name' => 'id'
+                                            'type' => 'integer'
+                                            'length' => null
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => false
+                                            'nullable' => true
+                                            'options' => Array &43 ()
+                                            'columnDefinition' => null
+                                        )
+                                        1 => Doctrine\ORM\Mapping\Id Object &00000000678be244000000003fdd7956 ()
+                                        2 => Doctrine\ORM\Mapping\GeneratedValue Object &00000000678be247000000003fdd7956 (
+                                            'strategy' => 'IDENTITY'
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\CustomFields$user@[Annot]][1]' => Array &44 (
+                                        0 => Doctrine\ORM\Mapping\ManyToOne Object &00000000678be240000000003fdd7956 (
+                                            'targetEntity' => 'User'
+                                            'cascade' => Array &45 (
+                                                0 => 'all'
+                                            )
+                                            'fetch' => 'LAZY'
+                                            'inversedBy' => 'CustomFields'
+                                        )
+                                        1 => Doctrine\ORM\Mapping\JoinColumns Object &00000000678be243000000003fdd7956 (
+                                            'value' => Array &46 (
+                                                0 => Doctrine\ORM\Mapping\JoinColumn Object &00000000678be242000000003fdd7956 (
+                                                    'name' => 'user_id'
+                                                    'referencedColumnName' => 'id'
+                                                    'unique' => false
+                                                    'nullable' => true
+                                                    'onDelete' => null
+                                                    'columnDefinition' => null
+                                                    'fieldName' => null
+                                                )
+                                            )
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\CustomFields$attribute@[Annot]][1]' => Array &47 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be25c000000003fdd7956 (
+                                            'name' => 'attribute'
+                                            'type' => 'string'
+                                            'length' => 50
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => false
+                                            'nullable' => false
+                                            'options' => Array &48 ()
+                                            'columnDefinition' => null
+                                        )
+                                    )
+                                    '[SimpleUser\Entity\CustomFields$value@[Annot]][1]' => Array &49 (
+                                        0 => Doctrine\ORM\Mapping\Column Object &00000000678be25d000000003fdd7956 (
+                                            'name' => 'value'
+                                            'type' => 'string'
+                                            'length' => 255
+                                            'precision' => 0
+                                            'scale' => 0
+                                            'unique' => false
+                                            'nullable' => true
+                                            'options' => Array &50 ()
+                                            'columnDefinition' => null
+                                        )
+                                    )
+                                )
+                                'namespace' => ''
+                                'namespaceVersion' => 1
+                            )
+                            'debug' => false
+                            'loadedAnnotations' => Array &51 (
+                                'SimpleUser\Entity\User' => Array &52 (
+                                    0 => Doctrine\ORM\Mapping\Entity Object &00000000678be287000000003fdd7956
+                                    1 => Doctrine\ORM\Mapping\Table Object &00000000678be284000000003fdd7956
+                                )
+                                'SimpleUser\Entity\User$id' => Array &53 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be295000000003fdd7956
+                                    1 => Doctrine\ORM\Mapping\Id Object &00000000678be294000000003fdd7956
+                                    2 => Doctrine\ORM\Mapping\GeneratedValue Object &00000000678be297000000003fdd7956
+                                )
+                                'SimpleUser\Entity\User$email' => Array &54 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be291000000003fdd7956
+                                )
+                                'SimpleUser\Entity\User$password' => Array &55 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be292000000003fdd7956
+                                )
+                                'SimpleUser\Entity\User$salt' => Array &56 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be2ae000000003fdd7956
+                                )
+                                'SimpleUser\Entity\User$roles' => Array &57 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be293000000003fdd7956
+                                )
+                                'SimpleUser\Entity\User$name' => Array &58 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be2ad000000003fdd7956
+                                )
+                                'SimpleUser\Entity\User$timeCreated' => Array &59 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be2af000000003fdd7956
+                                )
+                                'SimpleUser\Entity\User$username' => Array &60 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be2a8000000003fdd7956
+                                )
+                                'SimpleUser\Entity\User$isEnabled' => Array &61 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be2aa000000003fdd7956
+                                )
+                                'SimpleUser\Entity\User$confirmationToken' => Array &62 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be2a9000000003fdd7956
+                                )
+                                'SimpleUser\Entity\User$timePasswordResetRequested' => Array &63 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be2ab000000003fdd7956
+                                )
+                                'SimpleUser\Entity\User$customFields' => Array &64 (
+                                    0 => Doctrine\ORM\Mapping\OneToMany Object &00000000678be2a6000000003fdd7956
+                                )
+                                'SimpleUser\Entity\CustomFields' => Array &65 (
+                                    0 => Doctrine\ORM\Mapping\Table Object &00000000678be24f000000003fdd7956
+                                    1 => Doctrine\ORM\Mapping\Entity Object &00000000678be24c000000003fdd7956
+                                )
+                                'SimpleUser\Entity\CustomFields$id' => Array &66 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be245000000003fdd7956
+                                    1 => Doctrine\ORM\Mapping\Id Object &00000000678be244000000003fdd7956
+                                    2 => Doctrine\ORM\Mapping\GeneratedValue Object &00000000678be247000000003fdd7956
+                                )
+                                'SimpleUser\Entity\CustomFields$user' => Array &67 (
+                                    0 => Doctrine\ORM\Mapping\ManyToOne Object &00000000678be240000000003fdd7956
+                                    1 => Doctrine\ORM\Mapping\JoinColumns Object &00000000678be243000000003fdd7956
+                                )
+                                'SimpleUser\Entity\CustomFields$attribute' => Array &68 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be25c000000003fdd7956
+                                )
+                                'SimpleUser\Entity\CustomFields$value' => Array &69 (
+                                    0 => Doctrine\ORM\Mapping\Column Object &00000000678be25d000000003fdd7956
+                                )
+                            )
+                        )
+                        'paths' => Array &5
+                        'excludePaths' => Array &5
+                        'fileExtension' => '.php'
+                        'classNames' => null
+                    )
+                    'classMetadataFactoryName' => 'Doctrine\ORM\Mapping\ClassMetadataFactory'
+                    'entityListenerResolver' => Doctrine\ORM\Mapping\DefaultEntityListenerResolver Object &00000000678be28c000000003fdd7956 (
+                        'instances' => Array &70 ()
+                    )
+                    'namingStrategy' => Doctrine\ORM\Mapping\DefaultNamingStrategy Object &00000000678be289000000003fdd7956
+                    'quoteStrategy' => Doctrine\ORM\Mapping\DefaultQuoteStrategy Object &00000000678be25e000000003fdd7956 ()
+                )
+            )
+            'conn' => Doctrine\DBAL\Connection Object &00000000678be2e1000000003fdd7956 (
+                '_conn' => Doctrine\DBAL\Driver\PDOConnection Object &00000000678be2b300007f9136095596 ()
+                '_config' => Doctrine\DBAL\Configuration Object &00000000678be2e7000000003fdd7956 (
+                    '_attributes' => Array &71 ()
+                )
+                '_eventManager' => Doctrine\Common\EventManager Object &00000000678be2e5000000003fdd7956 (
+                    '_listeners' => Array &72 ()
+                )
+                '_expr' => Doctrine\DBAL\Query\Expression\ExpressionBuilder Object &00000000678be2fe000000003fdd7956 (
+                    'connection' => Doctrine\DBAL\Connection Object &00000000678be2e1000000003fdd7956
+                )
+                '_isConnected' => true
+                '_transactionNestingLevel' => 0
+                '_transactionIsolationLevel' => 2
+                '_nestTransactionsWithSavepoints' => null
+                '_params' => Array &73 (
+                    'driver' => 'pdo_sqlite'
+                    'dbname' => null
+                    'host' => 'localhost'
+                    'user' => 'root'
+                    'password' => null
+                    'port' => null
+                    'path' => '/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/../../../cache/.ht.sqlite'
+                )
+                '_platform' => Doctrine\DBAL\Platforms\SqlitePlatform Object &00000000678be2ff000000003fdd7956 (
+                    'doctrineTypeMapping' => null
+                    'doctrineTypeComments' => null
+                    '_eventManager' => Doctrine\Common\EventManager Object &00000000678be2e5000000003fdd7956
+                    '_keywords' => null
+                )
+                '_schemaManager' => null
+                '_driver' => Doctrine\DBAL\Driver\PDOSqlite\Driver Object &00000000678be2e0000000003fdd7956 (
+                    '_userDefinedFunctions' => Array &74 (
+                        'sqrt' => Array &75 (
+                            'callback' => Array &76 (
+                                0 => 'Doctrine\DBAL\Platforms\SqlitePlatform'
+                                1 => 'udfSqrt'
+                            )
+                            'numArgs' => 1
+                        )
+                        'mod' => Array &77 (
+                            'callback' => Array &78 (
+                                0 => 'Doctrine\DBAL\Platforms\SqlitePlatform'
+                                1 => 'udfMod'
+                            )
+                            'numArgs' => 2
+                        )
+                        'locate' => Array &79 (
+                            'callback' => Array &80 (
+                                0 => 'Doctrine\DBAL\Platforms\SqlitePlatform'
+                                1 => 'udfLocate'
+                            )
+                            'numArgs' => -1
+                        )
+                    )
+                )
+                '_isRollbackOnly' => false
+                'defaultFetchMode' => 2
+            )
+            'metadataFactory' => Doctrine\ORM\Mapping\ClassMetadataFactory Object &00000000678be2f0000000003fdd7956 (
+                'em' => Doctrine\ORM\EntityManager Object &00000000678be2f3000000003fdd7956
+                'targetPlatform' => Doctrine\DBAL\Platforms\SqlitePlatform Object &00000000678be2ff000000003fdd7956
+                'driver' => Doctrine\ORM\Mapping\Driver\AnnotationDriver Object &00000000678be2fa000000003fdd7956
+                'evm' => Doctrine\Common\EventManager Object &00000000678be2e5000000003fdd7956
+                'cacheSalt' => '$CLASSMETADATA'
+                'cacheDriver' => Doctrine\Common\Cache\ArrayCache Object &00000000678be2fc000000003fdd7956
+                'loadedMetadata' => Array &81 (
+                    'SimpleUser\Entity\User' => Doctrine\ORM\Mapping\ClassMetadata Object &00000000678be288000000003fdd7956
+                    'SimpleUser\Entity\CustomFields' => Doctrine\ORM\Mapping\ClassMetadata Object &00000000678be2b1000000003fdd7956
+                )
+                'initialized' => true
+                'reflectionService' => Doctrine\Common\Persistence\Mapping\RuntimeReflectionService Object &00000000678be28b000000003fdd7956 ()
+            )
+            'unitOfWork' => Doctrine\ORM\UnitOfWork Object &00000000678be28e000000003fdd7956 (
+                'identityMap' => Array &82 (
+                    'SimpleUser\Entity\User' => Array &83 (
+                        1 => SimpleUser\Entity\User Object &00000000678be2b9000000003fdd7956
+                    )
+                    'SimpleUser\Entity\CustomFields' => Array &84 (
+                        1 => SimpleUser\Entity\CustomFields Object &00000000678be2b5000000003fdd7956
+                        2 => SimpleUser\Entity\CustomFields Object &00000000678be2b2000000003fdd7956
+                    )
+                )
+                'entityIdentifiers' => Array &82
+                'originalEntityData' => Array &82
+                'entityChangeSets' => Array &82
+                'entityStates' => Array &82
+                'scheduledForDirtyCheck' => Array &82
+                'entityInsertions' => Array &82
+                'entityUpdates' => Array &82
+                'extraUpdates' => Array &82
+                'entityDeletions' => Array &82
+                'collectionDeletions' => Array &82
+                'collectionUpdates' => Array &82
+                'visitedCollections' => Array &82
+                'em' => Doctrine\ORM\EntityManager Object &00000000678be2f3000000003fdd7956
+                'commitOrderCalculator' => Doctrine\ORM\Internal\CommitOrderCalculator Object &00000000678be246000000003fdd7956 (
+                    '_nodeStates' => Array &85 ()
+                    '_classes' => Array &85
+                    '_relatedClasses' => Array &85
+                    '_sorted' => Array &85
+                )
+                'persisters' => Array &82
+                'collectionPersisters' => Array &82
+                'evm' => Doctrine\Common\EventManager Object &00000000678be2e5000000003fdd7956
+                'listenersInvoker' => Doctrine\ORM\Event\ListenersInvoker Object &00000000678be28f000000003fdd7956 (
+                    'resolver' => Doctrine\ORM\Mapping\DefaultEntityListenerResolver Object &00000000678be28c000000003fdd7956
+                    'eventManager' => Doctrine\Common\EventManager Object &00000000678be2e5000000003fdd7956
+                )
+                'orphanRemovals' => Array &82
+                'readOnlyObjects' => Array &82
+                'eagerLoadingEntities' => Array &82
+            )
+            'eventManager' => Doctrine\Common\EventManager Object &00000000678be2e5000000003fdd7956
+            'proxyFactory' => Doctrine\ORM\Proxy\ProxyFactory Object &00000000678be28d000000003fdd7956 (
+                'em' => Doctrine\ORM\EntityManager Object &00000000678be2f3000000003fdd7956
+                'uow' => Doctrine\ORM\UnitOfWork Object &00000000678be28e000000003fdd7956
+                'proxyNs' => 'DoctrineProxies'
+                'metadataFactory' => Doctrine\ORM\Mapping\ClassMetadataFactory Object &00000000678be2f0000000003fdd7956
+                'proxyGenerator' => Doctrine\Common\Proxy\ProxyGenerator Object &00000000678be28a000000003fdd7956 (
+                    'proxyNamespace' => 'DoctrineProxies'
+                    'proxyDirectory' => '/tmp'
+                    'placeholders' => Array &86 (
+                        'baseProxyInterface' => 'Doctrine\ORM\Proxy\Proxy'
+                        'additionalProperties' => ''
+                    )
+                    'proxyClassTemplate' => '<?php
+
+namespace <namespace>;
+
+/**
+ * DO NOT EDIT THIS FILE - IT WAS CREATED BY DOCTRINE'S PROXY GENERATOR
+ */
+class <proxyShortClassName> extends \<className> implements \<baseProxyInterface>
+{
+    /**
+     * @var \Closure the callback responsible for loading properties in the proxy object. This callback is called with
+     *      three parameters, being respectively the proxy object to be initialized, the method that triggered the
+     *      initialization process and an array of ordered parameters that were passed to that method.
+     *
+     * @see \Doctrine\Common\Persistence\Proxy::__setInitializer
+     */
+    public $__initializer__;
+
+    /**
+     * @var \Closure the callback responsible of loading properties that need to be copied in the cloned object
+     *
+     * @see \Doctrine\Common\Persistence\Proxy::__setCloner
+     */
+    public $__cloner__;
+
+    /**
+     * @var boolean flag indicating if this object was already initialized
+     *
+     * @see \Doctrine\Common\Persistence\Proxy::__isInitialized
+     */
+    public $__isInitialized__ = false;
+
+    /**
+     * @var array properties to be lazy loaded, with keys being the property
+     *            names and values being their default values
+     *
+     * @see \Doctrine\Common\Persistence\Proxy::__getLazyProperties
+     */
+    public static $lazyPropertiesDefaults = array(<lazyPropertiesDefaults>);
+
+<additionalProperties>
+
+<constructorImpl>
+
+<magicGet>
+
+<magicSet>
+
+<magicIsset>
+
+<sleepImpl>
+
+<wakeupImpl>
+
+<cloneImpl>
+
+    /**
+     * Forces initialization of the proxy
+     */
+    public function __load()
+    {
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__load', array());
+    }
+
+    /**
+     * {@inheritDoc}
+     * @internal generated method: use only when explicitly handling proxy specific loading logic
+     */
+    public function __isInitialized()
+    {
+        return $this->__isInitialized__;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @internal generated method: use only when explicitly handling proxy specific loading logic
+     */
+    public function __setInitialized($initialized)
+    {
+        $this->__isInitialized__ = $initialized;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @internal generated method: use only when explicitly handling proxy specific loading logic
+     */
+    public function __setInitializer(\Closure $initializer = null)
+    {
+        $this->__initializer__ = $initializer;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @internal generated method: use only when explicitly handling proxy specific loading logic
+     */
+    public function __getInitializer()
+    {
+        return $this->__initializer__;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @internal generated method: use only when explicitly handling proxy specific loading logic
+     */
+    public function __setCloner(\Closure $cloner = null)
+    {
+        $this->__cloner__ = $cloner;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @internal generated method: use only when explicitly handling proxy specific cloning logic
+     */
+    public function __getCloner()
+    {
+        return $this->__cloner__;
+    }
+
+    /**
+     * {@inheritDoc}
+     * @internal generated method: use only when explicitly handling proxy specific loading logic
+     * @static
+     */
+    public function __getLazyProperties()
+    {
+        return self::$lazyPropertiesDefaults;
+    }
+
+    <methods>
+}
+'
+                )
+                'autoGenerate' => 1
+                'definitions' => Array &87 ()
+            )
+            'repositoryFactory' => Doctrine\ORM\Repository\DefaultRepositoryFactory Object &00000000678be2f1000000003fdd7956 (
+                'repositoryList' => Array &88 (
+                    'SimpleUser\Entity\User' => SimpleUser\Entity\UserRepository Object &00000000678be296000000003fdd7956 (
+                        'app' => Silex\Application Object &00000000678be36c000000003fdd7956 (
+                            'providers' => Array &89 (
+                                0 => Silex\Provider\SecurityServiceProvider Object &00000000678be374000000003fdd7956 (
+                                    'fakeRoutes' => Array &90 ()
+                                )
+                                1 => Silex\Provider\DoctrineServiceProvider Object &00000000678be2cb000000003fdd7956 ()
+                                2 => SimpleUser\UserServiceProvider Object &00000000678be2da000000003fdd7956 ()
+                            )
+                            'booted' => false
+                            'values' => Array &89
+                        )
+                        'dispatcher' => Symfony\Component\EventDispatcher\EventDispatcher Object &00000000678be2ac000000003fdd7956 (
+                            'listeners' => Array &91 (
+                                'kernel.request' => Array &92 (
+                                    32 => Array &93 (
+                                        0 => Array &94 (
+                                            0 => Symfony\Component\HttpKernel\EventListener\RouterListener Object &00000000678be2a4000000003fdd7956 (
+                                                'matcher' => Silex\LazyUrlMatcher Object &00000000678be290000000003fdd7956 (
+                                                    'factory' => Closure Object &00000000678be2a7000000003fdfe2d6 (
+                                                        0 => Closure Object &00000000678be2a7000000003fdfe2d6
+                                                    )
+                                                )
+                                                'context' => Symfony\Component\Routing\RequestContext Object &00000000678be2a5000000003fdd7956 (
+                                                    'baseUrl' => ''
+                                                    'pathInfo' => '/'
+                                                    'method' => 'GET'
+                                                    'host' => 'localhost'
+                                                    'scheme' => 'http'
+                                                    'httpPort' => 80
+                                                    'httpsPort' => 443
+                                                    'queryString' => ''
+                                                    'parameters' => Array &95 ()
+                                                )
+                                                'logger' => null
+                                                'request' => null
+                                                'requestStack' => Symfony\Component\HttpFoundation\RequestStack Object &00000000678be2a2000000003fdd7956 (
+                                                    'requests' => Array &96 ()
+                                                )
+                                            )
+                                            1 => 'onKernelRequest'
+                                        )
+                                    )
+                                    16 => Array &97 (
+                                        0 => Array &98 (
+                                            0 => Silex\EventListener\LocaleListener Object &00000000678be2a3000000003fdd7956 (
+                                                'app' => Silex\Application Object &00000000678be36c000000003fdd7956
+                                                'router' => Silex\LazyUrlMatcher Object &00000000678be290000000003fdd7956
+                                                'defaultLocale' => 'en'
+                                                'requestStack' => Symfony\Component\HttpFoundation\RequestStack Object &00000000678be2a2000000003fdd7956
+                                            )
+                                            1 => 'onKernelRequest'
+                                        )
+                                    )
+                                    -1024 => Array &99 (
+                                        0 => Array &100 (
+                                            0 => Silex\EventListener\MiddlewareListener Object &00000000678be2be000000003fdd7956 (
+                                                'app' => Silex\Application Object &00000000678be36c000000003fdd7956
+                                            )
+                                            1 => 'onKernelRequest'
+                                        )
+                                    )
+                                )
+                                'kernel.finish_request' => Array &101 (
+                                    0 => Array &102 (
+                                        0 => Array &103 (
+                                            0 => Symfony\Component\HttpKernel\EventListener\RouterListener Object &00000000678be2a4000000003fdd7956
+                                            1 => 'onKernelFinishRequest'
+                                        )
+                                        1 => Array &104 (
+                                            0 => Silex\EventListener\LocaleListener Object &00000000678be2a3000000003fdd7956
+                                            1 => 'onKernelFinishRequest'
+                                        )
+                                    )
+                                )
+                                'kernel.exception' => Array &105 (
+                                    -255 => Array &106 (
+                                        0 => Array &107 (
+                                            0 => Silex\ExceptionHandler Object &00000000678be2a0000000003fdd7956 (
+                                                'debug' => false
+                                                'enabled' => true
+                                            )
+                                            1 => 'onSilexError'
+                                        )
+                                    )
+                                )
+                                'kernel.response' => Array &108 (
+                                    0 => Array &109 (
+                                        0 => Array &110 (
+                                            0 => Symfony\Component\HttpKernel\EventListener\ResponseListener Object &00000000678be2a1000000003fdd7956 (
+                                                'charset' => 'UTF-8'
+                                            )
+                                            1 => 'onKernelResponse'
+                                        )
+                                    )
+                                    128 => Array &111 (
+                                        0 => Array &112 (
+                                            0 => Silex\EventListener\MiddlewareListener Object &00000000678be2be000000003fdd7956
+                                            1 => 'onKernelResponse'
+                                        )
+                                    )
+                                )
+                                'kernel.controller' => Array &113 (
+                                    0 => Array &114 (
+                                        0 => Array &115 (
+                                            0 => Silex\EventListener\ConverterListener Object &00000000678be2bf000000003fdd7956 (
+                                                'routes' => Symfony\Component\Routing\RouteCollection Object &00000000678be2bc000000003fdd7956 (
+                                                    'routes' => Array &116 ()
+                                                    'resources' => Array &116
+                                                )
+                                                'callbackResolver' => Silex\CallbackResolver Object &00000000678be2bd000000003fdd7956 (
+                                                    'app' => Silex\Application Object &00000000678be36c000000003fdd7956
+                                                )
+                                            )
+                                            1 => 'onKernelController'
+                                        )
+                                    )
+                                )
+                                'kernel.view' => Array &117 (
+                                    -10 => Array &118 (
+                                        0 => Array &119 (
+                                            0 => Silex\EventListener\StringToResponseListener Object &00000000678be2ba000000003fdd7956 ()
+                                            1 => 'onKernelView'
+                                        )
+                                    )
+                                )
+                            )
+                            'sorted' => Array &91
+                        )
+                        'identityMap' => Array &120 (
+                            1 => SimpleUser\Entity\User Object &00000000678be2b9000000003fdd7956
+                        )
+                        'userClass' => '\SimpleUser\Entity\User'
+                        'customFieldsClass' => '\SimpleUser\Entity\CustomFields'
+                        'isUsernameRequired' => false
+                        'passwordStrengthValidator' => null
+                        'fieldNames' => Array &120
+                        '_entityName' => 'SimpleUser\Entity\User'
+                        '_em' => Doctrine\ORM\EntityManager Object &00000000678be2f3000000003fdd7956
+                        '_class' => Doctrine\ORM\Mapping\ClassMetadata Object &00000000678be288000000003fdd7956
+                    )
+                    'SimpleUser\Entity\CustomFields' => SimpleUser\Entity\CustomFieldsRepository Object &00000000678be259000000003fdd7956 (
+                        'class' => '\SimpleUser\Entity\CustomFields'
+                        '_entityName' => 'SimpleUser\Entity\CustomFields'
+                        '_em' => Doctrine\ORM\EntityManager Object &00000000678be2f3000000003fdd7956
+                        '_class' => Doctrine\ORM\Mapping\ClassMetadata Object &00000000678be2b1000000003fdd7956
+                    )
+                )
+            )
+            'expressionBuilder' => null
+            'closed' => false
+            'filterCollection' => Doctrine\ORM\Query\FilterCollection Object &00000000678be25b000000003fdd7956 (
+                'config' => Doctrine\ORM\Configuration Object &00000000678be2fd000000003fdd7956
+                'em' => Doctrine\ORM\EntityManager Object &00000000678be2f3000000003fdd7956
+                'enabledFilters' => Array &121 ()
+                'filterHash' => null
+                'filtersState' => 1
+            )
+        )
+        'backRefFieldName' => 'User'
+        'typeClass' => Doctrine\ORM\Mapping\ClassMetadata Object &00000000678be2b1000000003fdd7956
+        'isDirty' => false
+        'initialized' => true
+        'coll' => Doctrine\Common\Collections\ArrayCollection Object &00000000678be2b6000000003fdd7956 (
+            '_elements' => Array &122 (
+                0 => SimpleUser\Entity\CustomFields Object &00000000678be2b5000000003fdd7956
+                1 => SimpleUser\Entity\CustomFields Object &00000000678be2b2000000003fdd7956
+            )
+        )
+    )
+) is null.
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:157
+
+2) SimpleUser\Tests\UserManagerTest::testCustomUserClass
+Failed asserting that SimpleUser\Entity\User Object (...) is an instance of class "SimpleUser\Tests\CustomUser".
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:295
+
+3) SimpleUser\Tests\UserManagerTest::testSupportsSubClass
+Failed asserting that false is true.
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:338
+
+4) SimpleUser\Tests\UserManagerTest::testValidationWhenUsernameIsRequired
+Failed asserting that an array is empty.
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:351
+
+5) SimpleUser\Tests\UserManagerTest::testAfterInsertEvents
+Failed asserting that true is false.
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:390
+
+6) SimpleUser\Tests\UserManagerTest::testAfterUpdateEvents
+Failed asserting that true is false.
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:431
+[37;41m                                       [0m
+[37;41mFAILURES!                              [0m
+[37;41mTests: 44, Assertions: 82, Failures: 6.[0m

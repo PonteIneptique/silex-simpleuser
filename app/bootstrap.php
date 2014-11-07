@@ -145,28 +145,28 @@ try {
 	$app = create_app();
 	drop($app);
 } catch (Exception $e) {
-	print_r($e);
+	//print_r($e);
 }
 
 try {
 	$app = create_app();
 	drop_entity($app);
 } catch (Exception $e) {
-	print_r($e);
+	//print_r($e);
 }
 
 try {
 	$app = create_app();
 	create($app);
 } catch (Exception $e) {
-	print_r($e);
+	//print_r($e);
 }
 
 try {
 	$app = create_app();
 	create_entity($app);
 } catch (Exception $e) {
-	print_r($e);
+	//print_r($e);
 }
 
 return create_app();

@@ -540,7 +540,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
         }
     }
 
-    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null) {
+    private function augmentedCritera(array $criteria) {
         if(array_key_exists("customFields", $criteria)) {
             $fieldsRepo = $this ->getEntityManager()
                                 ->getRepository($this->customFieldsClass);
@@ -551,15 +551,53 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
                 $criteria_fields["value"] = $value;
             }
 
+            $eb = new \Doctrine\Common\Collections\ExpressionBuilder();
+            $expr = $eb->lt('schedDatetime', new \DateTime());
+            $criteria = new \Doctrine\Common\Collections\Criteria($expr);
+
             $fields = $fieldsRepo->findBy($criteria_fields);
-            if(!array_key_exists("id", $criteria)) {
-                $criteria["id"] = array();
-            }
-            foreach($fields as $field) {
-                $criteria["id"][] = $field->getUser()->getId();;
+            print_r(count($fields));
+            if(count($fields) > 1) {
+                $ids = array();
+
+                if(!array_key_exists("id", $criteria)) {
+                    $criteria["id"] = array();
+                }
+                foreach($fields as $field) {
+                    $id = $field->getUser()->getId();
+                    if(!array_key_exists($id, $ids)) {
+                        $ids[$id] = array();
+                    }
+                    $ids[$id][] = $field;
+                }
+                foreach($ids as $id => $match) {
+                    if(!in_array($id, $criteria["id"]) && count($match) == count($criteria_fields["attribute"])) {
+                        $criteria["id"][] = $id;
+                    }
+                }
+                print_r($criteria);
+            } elseif (count($fields) == 1) {
+                $criteria["id"] = $fields[0]->getUser()->getId();
             }
             unset($criteria["customFields"]);
         }
+        return $criteria;
+    }
+
+    /**
+     * Augmented version of findBy to procure a simple way to ask for customFields relationships
+     *
+     *
+     */
+
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null) {
+        $criteria = $this->augmentedCritera($criteria);
         return parent::findBy($criteria, $orderBy, $limit, $offset);
+    }
+
+    public function findOneBy(array $criteria) {
+        $criteria = $this->augmentedCritera($criteria);
+        print_r($criteria);
+        return parent::findOneBy($criteria);
     }
 }
