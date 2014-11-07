@@ -545,34 +545,27 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
 
             $number_fields = 1;
             $criteria_fields = new \Doctrine\Common\Collections\Criteria();
+            $eb = new \Doctrine\Common\Collections\ExpressionBuilder();
 
-            foreach($criteria["customFields"] as $attribute => $value) {
 
-                $eb = new \Doctrine\Common\Collections\ExpressionBuilder();
-
-                $expr = $eb->andX(
-                    $eb->eq("value", $value),
-                    $eb->eq("attribute", $attribute)
-                );
-
-                if(count($criteria["customFields"]) === 1 || $number_fields === 1) {
-                    $criteria_fields->where($expr);
-                } else {
-                    $criteria_fields->orWhere($expr);
-                }
-                $number_fields = $number_fields + 1;
+            $values = array();
+            foreach ($criteria["customFields"] as $key => $value) {
+                $values[] = array($key, $value);
             }
+            $criteria_fields->where($eb->in(
+                "(c.value, c.attribute)", $values
+
+            ));
 
             $qb = $this->getEntityManager()->createQueryBuilder();
 
             $fields = $qb   ->select("c")
                             ->from($this->customFieldsClass, "c")
                             ->addCriteria($criteria_fields)
-                            ->getQuery();
+                            ->getQuery()
+                            ->getResult();
 
-            print_r($fields);
-                            $fields->getResult();
-
+            $criteria["customFields"] = $fields;
             unset($criteria["customFields"]);
         }
         return $criteria;
