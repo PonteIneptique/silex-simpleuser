@@ -4,6 +4,7 @@ namespace SimpleUser\Entity;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @author Thibault Clerice
@@ -93,11 +94,11 @@ class User implements AdvancedUserInterface, \Serializable
 
 
     /** 
-     * @var array
+     * @var \Doctrine\Common\Collections\ArrayCollection()
      *
      * @ORM\OneToMany(targetEntity="CustomFields", mappedBy="User",cascade={"all"})
      */
-    protected $customFields = array();
+    protected $customFields;
 
 
     /**
@@ -110,6 +111,7 @@ class User implements AdvancedUserInterface, \Serializable
         $this->email = $email;
         $this->timeCreated = time();
         $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->customFields = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -605,51 +607,47 @@ class User implements AdvancedUserInterface, \Serializable
         return $timeRequested + $ttl < time();
     }
 
-
     /**
-     * @param string $customField
-     * @return bool
+     * @param CustomField $customField
+     * 
+     * @return this
      */
-    public function hasCustomField($customField)
+    public function addCustomFields(CustomFields $customFields)
     {
-        return array_key_exists($customField, $this->customFields);
-    }
+        $this->customFields->add($customFields);
 
-    /**
-     * @param string $customField
-     * @return mixed|null
-     */
-    public function getCustomField($customField)
-    {
-        return $this->hasCustomField($customField) ? $this->customFields[$customField] : null;
-    }
-
-    /**
-     * @param string $customField
-     * @param mixed $value
-     */
-    public function setCustomField($customField, $value)
-    {
-        $field = new CustomFields($this, $customField, $value);
-        $this->customFields[$customField] = $field;
-        print_r($field);
         return $this;
     }
 
     /**
-     * @param array|null $customFields
+     * @param CustomField $customField
      */
-    public function setCustomFields($customFields)
+    public function removeCustomFields(CustomFields $customFields)
     {
-        $this->customFields = $customFields;
-        return $this;
+        $this->customFields->removeElement($customFields);
     }
 
     /**
-     * @return array
+     * @return \Doctrine\Common\Collections\ArrayCollection()
      */
     public function getCustomFields()
     {
         return $this->customFields;
+    }
+
+    /**
+     * @param CustomField $customField
+     * 
+     * @return bool
+     */
+    public function hasCustomField(CustomFields $customField)
+    {
+        foreach(this->customField as $field) {
+            if($customField === $field){
+                return true;
+            }
+        }
+        
+        return false;
     }
 }
