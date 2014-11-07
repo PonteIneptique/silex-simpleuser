@@ -350,23 +350,8 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     */
     public function findCount(array $criteria = array())
     {
-        $query = $this->createQueryBuilder('u')
-            ->select('COUNT(u)');
-
-        foreach($criteria as $field_name => $field_value) {
-            $where  = 'u.' + $field_name . " = :" . $field_name . " ";
-            $query
-             ->where($where)
-             ->setParameter($field_name, $field_value);
-        }
-
-        print("\n");
-        print_r($query
-            ->getQuery());
-        print("\n");
-
-        return $query
-            ->getSingleScalarResult();
+        $users = $this->findBy($criteria);
+        return count($users);
     }
 
 
