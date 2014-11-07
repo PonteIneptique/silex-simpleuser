@@ -15,9 +15,9 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=true)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -75,7 +75,7 @@ class User implements AdvancedUserInterface, \Serializable
      *
      * @ORM\Column(name="is_enabled", type="boolean")
      */
-    private $isEnabled = '1';
+    private $isEnabled = true;
 
     /**
      * @var string
@@ -91,7 +91,13 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $timePasswordResetRequested;
 
-    //protected $customFields = array();
+
+    /** 
+     * @var array
+     *
+     * @ORM\OneToMany(targetEntity="CustomFields", mappedBy="User",cascade={"all"})
+     */
+    protected $customFields = array();
 
 
     /**
@@ -624,7 +630,10 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function setCustomField($customField, $value)
     {
-        $this->customFields[$customField] = $value;
+        $field = new CustomFields($this, $customField, $value);
+        $this->customFields[$customField] = $field;
+        print_r($field);
+        return $this;
     }
 
     /**
@@ -633,6 +642,7 @@ class User implements AdvancedUserInterface, \Serializable
     public function setCustomFields($customFields)
     {
         $this->customFields = $customFields;
+        return $this;
     }
 
     /**

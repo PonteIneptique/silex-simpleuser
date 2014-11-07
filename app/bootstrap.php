@@ -44,7 +44,8 @@ function create_app() {
 	);
 
 	$app['user.model'] = array(
-	    "user" => "\\SimpleUser\\Entity\\User"
+	    "user" => "\\SimpleUser\\Entity\\User",
+	    "customFields" => "\\SimpleUser\\Entity\\CustomFields"
 	);
 
     $app['doctrine.orm.entity_manager'] = $app->share(function ($app) {

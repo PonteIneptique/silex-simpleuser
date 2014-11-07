@@ -21,4 +21,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class CustomFieldsRepository extends EntityRepository
 {
+	protected $class = "\\SimpleUser\\Entity\\CustomFields";
+    public function getTableName() {
+        return $this->getEntityManager()->getClassMetadata($this->class)->getTableName();
+    }
 }
+

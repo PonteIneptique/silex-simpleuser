@@ -32,7 +32,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     protected $userClass = '\SimpleUser\Entity\User';
 
     /** @var string */
-    protected $customFieldsClass = '\SimpleUser\CustomFields';
+    protected $customFieldsClass = '\SimpleUser\Entity\CustomFields';
 
     /** @var bool */
     protected $isUsernameRequired = false;
@@ -62,12 +62,13 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
         $this->dispatcher = $dispatcher;
     }
 
-    private function _persist(User $model) {
+    private function _persist(User $user) {
 
-        $this->getEntityManager()->persist($model);
+        $this->getEntityManager()->persist($user);
         $this->getEntityManager()->flush();
+        
 
-        return $model;
+        return $user;
     }
 
     /**
@@ -366,8 +367,6 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
 
         $this->_persist($user);
 
-        //$this->saveUserCustomFields($user);
-
         $this->identityMap[$user->getId()] = $user;
 
         $this->dispatcher->dispatch(UserEvents::AFTER_INSERT, new UserEvent($user));
@@ -394,14 +393,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
      */
     protected function saveUserCustomFields(User $user)
     {
-        /*
-        $this->conn->executeUpdate('DELETE FROM ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' WHERE user_id = ?', array($user->getId()));
-
-        foreach ($user->getCustomFields() as $attribute => $value) {
-            $this->conn->executeUpdate('INSERT INTO ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' (user_id, attribute, value) VALUES (?, ?, ?) ',
-                array($user->getId(), $attribute, $value));
-        }
-        */
+        $this->_persist($user);
     }
 
     /**
@@ -546,5 +538,28 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
 
             $this->app['user'] = $user;
         }
+    }
+
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null) {
+        if(array_key_exists("customFields", $criteria)) {
+            $fieldsRepo = $this ->getEntityManager()
+                                ->getRepository($this->customFieldsClass);
+
+            $criteria_fields = array("attribute" => array(), "value" => array());
+            foreach($criteria["customFields"] as $attribute => $value) {
+                $criteria_fields["attribute"] = $attribute;
+                $criteria_fields["value"] = $value;
+            }
+
+            $fields = $fieldsRepo->findBy($criteria_fields);
+            if(!array_key_exists("id", $criteria)) {
+                $criteria["id"] = array();
+            }
+            foreach($fields as $field) {
+                $criteria["id"][] = $field->getUser()->getId();;
+            }
+            unset($criteria["customFields"]);
+        }
+        return parent::findBy($criteria, $orderBy, $limit, $offset);
     }
 }

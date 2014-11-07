@@ -126,7 +126,8 @@ class UserServiceProvider implements ServiceProviderInterface, ControllerProvide
 
 
         $app['user.model'] = array(
-            "user" => "\\SimpleUser\\Entity\\User"
+            "user" => "\\SimpleUser\\Entity\\User",
+            "customFields" => "\\SimpleUser\\Entity\\CustomFields"
         );
 
         // Token generator.
