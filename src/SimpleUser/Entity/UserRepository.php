@@ -541,44 +541,38 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     }
 
     private function augmentedCritera(array $criteria) {
-        if(array_key_exists("customFields", $criteria)) {
-            $fieldsRepo = $this ->getEntityManager()
-                                ->getRepository($this->customFieldsClass);
+        if(array_key_exists("customFields", $criteria) && count($criteria["customFields"]) > 0) {
 
-            $criteria_fields = array("attribute" => array(), "value" => array());
+            $number_fields = 1;
+            $criteria_fields = new \Doctrine\Common\Collections\Criteria();
+
             foreach($criteria["customFields"] as $attribute => $value) {
-                $criteria_fields["attribute"] = $attribute;
-                $criteria_fields["value"] = $value;
+
+                $eb = new \Doctrine\Common\Collections\ExpressionBuilder();
+
+                $expr = $eb->andX(
+                    $eb->eq("value", $value),
+                    $eb->eq("attribute", $attribute)
+                );
+
+                if(count($criteria["customFields"]) === 1 || $number_fields === 1) {
+                    $criteria_fields->where($expr);
+                } else {
+                    $criteria_fields->orWhere($expr);
+                }
+                $number_fields = $number_fields + 1;
             }
 
-            $eb = new \Doctrine\Common\Collections\ExpressionBuilder();
-            $expr = $eb->lt('schedDatetime', new \DateTime());
-            $criteria = new \Doctrine\Common\Collections\Criteria($expr);
+            $qb = $this->getEntityManager()->createQueryBuilder();
 
-            $fields = $fieldsRepo->findBy($criteria_fields);
-            print_r(count($fields));
-            if(count($fields) > 1) {
-                $ids = array();
+            $fields = $qb   ->select("c")
+                            ->from($this->customFieldsClass, "c")
+                            ->addCriteria($criteria_fields)
+                            ->getQuery();
 
-                if(!array_key_exists("id", $criteria)) {
-                    $criteria["id"] = array();
-                }
-                foreach($fields as $field) {
-                    $id = $field->getUser()->getId();
-                    if(!array_key_exists($id, $ids)) {
-                        $ids[$id] = array();
-                    }
-                    $ids[$id][] = $field;
-                }
-                foreach($ids as $id => $match) {
-                    if(!in_array($id, $criteria["id"]) && count($match) == count($criteria_fields["attribute"])) {
-                        $criteria["id"][] = $id;
-                    }
-                }
-                print_r($criteria);
-            } elseif (count($fields) == 1) {
-                $criteria["id"] = $fields[0]->getUser()->getId();
-            }
+            print_r($fields);
+                            $fields->getResult();
+
             unset($criteria["customFields"]);
         }
         return $criteria;
@@ -597,7 +591,6 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
 
     public function findOneBy(array $criteria) {
         $criteria = $this->augmentedCritera($criteria);
-        print_r($criteria);
         return parent::findOneBy($criteria);
     }
 }
