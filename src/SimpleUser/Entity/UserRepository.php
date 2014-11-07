@@ -542,30 +542,42 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
 
     private function augmentedCritera(array $criteria) {
         if(array_key_exists("customFields", $criteria) && count($criteria["customFields"]) > 0) {
-
-            $number_fields = 1;
-            $criteria_fields = new \Doctrine\Common\Collections\Criteria();
-            $eb = new \Doctrine\Common\Collections\ExpressionBuilder();
-
-
-            $values = array();
+            $tuples = array();
             foreach ($criteria["customFields"] as $key => $value) {
-                $values[] = array($key, $value);
+                $tuples[] = $key . " " . $value;
             }
-            $criteria_fields->where($eb->in(
-                "(c.value, c.attribute)", $values
-
-            ));
 
             $qb = $this->getEntityManager()->createQueryBuilder();
 
             $fields = $qb   ->select("c")
                             ->from($this->customFieldsClass, "c")
-                            ->addCriteria($criteria_fields)
+                            ->where("CONCAT(CONCAT(c.attribute, ' '), c.value) IN (:tuples)")
+                            ->setParameter("tuples", $tuples)
                             ->getQuery()
                             ->getResult();
 
-            $criteria["customFields"] = $fields;
+            $ids = array();
+            $criteria_id = array();
+
+            foreach($fields as $field) {
+                $userId = $field->getUser()->getId();
+                if(!array_key_exists($userId, $ids)) {
+                    $ids[$userId] = array();
+                }
+                $ids[$userId][] = $field->getId();
+            }
+
+            foreach($ids as $id => $match) {
+                if(!in_array($id, $criteria_id) && count($match) === count($criteria["customFields"])) {
+                    $criteria_id[] = $id;
+                }
+            }
+
+            if(array_key_exists("id", $criteria)) {
+                $criteria["id"] = array_intersect($criteria_id, array($criteria["id"]));
+            } else {
+                $criteria["id"] = $criteria_id;
+            }
             unset($criteria["customFields"]);
         }
         return $criteria;

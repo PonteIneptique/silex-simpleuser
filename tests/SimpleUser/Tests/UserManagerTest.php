@@ -151,9 +151,7 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($storedUser, $foundUser);
 
         // Failed search returns null.
-        print_r("HERE");
         $foundUser = $this->userManager->findOneBy(array('customFields' => array('field1' => 'foo', 'field2' => 'does-not-exist')));
-        print_r("DEAD");
         $this->assertNull($foundUser);
     }
 

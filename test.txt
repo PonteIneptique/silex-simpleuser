@@ -2,140 +2,36 @@ PHPUnit 4.3.4 by Sebastian Bergmann.
 
 Configuration read from /home/thibault/dev/silex-simpleuser/phpunit.xml.dist
 
-.........[31;1mE[0m........[31;1mE[0m[41;37mF[0m.[41;37mF[0m[41;37mF[0m.[41;37mF[0m.[41;37mF[0m.................
+...................[41;37mF[0m.[41;37mF[0m[41;37mF[0m.[41;37mF[0m.[41;37mF[0m.................
 
-Time: 844 ms, Memory: 25.75Mb
-
-There were 2 errors:
-
-1) SimpleUser\Tests\UserManagerTest::testCustomFields
-Doctrine\ORM\Query\QueryException: [Syntax Error] line 0, col 57: Error: Expected =, <, <=, <>, >, >=, !=, got 'c'
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/QueryException.php:52
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:448
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:3233
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2974
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2501
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2384
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2360
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2328
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2303
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:1327
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:876
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:843
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:268
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:351
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query.php:255
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query.php:267
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:794
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:574
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:566
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:586
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:146
-
-Caused by
-Doctrine\ORM\Query\QueryException: SELECT c FROM \SimpleUser\Entity\CustomFields c WHERE c.(c.value, c.attribute) IN(:(c_value, c_attribute))
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/QueryException.php:41
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:448
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:3233
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2974
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2501
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2384
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2360
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2328
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2303
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:1327
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:876
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:843
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:268
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:351
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query.php:255
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query.php:267
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:794
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:574
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:566
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:586
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:146
-
-2) SimpleUser\Tests\UserManagerTest::testFindAndCount
-Doctrine\ORM\Query\QueryException: [Syntax Error] line 0, col 57: Error: Expected =, <, <=, <>, >, >=, !=, got 'c'
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/QueryException.php:52
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:448
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:3233
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2974
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2501
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2384
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2360
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2328
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2303
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:1327
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:876
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:843
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:268
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:351
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query.php:255
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query.php:267
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:794
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:574
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:566
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:581
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:282
-
-Caused by
-Doctrine\ORM\Query\QueryException: SELECT c FROM \SimpleUser\Entity\CustomFields c WHERE c.(c.value, c.attribute) IN(:(c_value, c_attribute))
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/QueryException.php:41
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:448
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:3233
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2974
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2501
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2384
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2360
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2328
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:2303
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:1327
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:876
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:843
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:268
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query/Parser.php:351
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query.php:255
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Query.php:267
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:794
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/AbstractQuery.php:574
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:566
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:581
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:282
-
---
+Time: 1.02 seconds, Memory: 25.75Mb
 
 There were 5 failures:
 
 1) SimpleUser\Tests\UserManagerTest::testCustomUserClass
 Failed asserting that SimpleUser\Entity\User Object (...) is an instance of class "SimpleUser\Tests\CustomUser".
 
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:295
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:293
 
 2) SimpleUser\Tests\UserManagerTest::testSupportsSubClass
 Failed asserting that false is true.
 
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:338
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:336
 
 3) SimpleUser\Tests\UserManagerTest::testValidationWhenUsernameIsRequired
 Failed asserting that an array is empty.
 
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:351
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:349
 
 4) SimpleUser\Tests\UserManagerTest::testAfterInsertEvents
 Failed asserting that true is false.
 
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:390
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:388
 
 5) SimpleUser\Tests\UserManagerTest::testAfterUpdateEvents
 Failed asserting that true is false.
 
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:431
-[37;41m                                                  [0m
-[37;41mFAILURES!                                         [0m
-[37;41mTests: 44, Assertions: 77, Failures: 5, Errors: 2.[0m
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:429
+[37;41m                                       [0m
+[37;41mFAILURES!                              [0m
+[37;41mTests: 44, Assertions: 84, Failures: 5.[0m

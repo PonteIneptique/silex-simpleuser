@@ -119,4 +119,14 @@ class CustomFields
     {
         return $this->value;
     }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->value;
+    }
 }
