@@ -84,7 +84,7 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testCreateUser()
     {
-        $user = $this->userManager->createUser('test1@example.com', 'pass');
+        $user = $this->userManager->createUser('test@example.com', 'pass');
 
         $this->assertInstanceOf('Simpleuser\Entity\User', $user);
     }
@@ -92,7 +92,7 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
     public function testStoreAndFetchUser()
     {
 
-        $user = $this->userManager->createUser('test2@example.com', 'password');
+        $user = $this->userManager->createUser('test@example.com', 'password');
         $this->assertNull($user->getId());
         $this->userManager->insert($user);
         $this->assertGreaterThan(0, $user->getId());
@@ -103,7 +103,7 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testUpdateUser()
     {
-        $user = $this->userManager->createUser('test3@example.com', 'pass');
+        $user = $this->userManager->createUser('test@example.com', 'pass');
         $this->userManager->insert($user);
 
         $user->setName('Foo');
@@ -116,7 +116,7 @@ class UserManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testDeleteUser()
     {
-        $email = 'test4@example.com';
+        $email = 'test@example.com';
 
         $user = $this->userManager->createUser($email, 'password');
         $this->userManager->insert($user);

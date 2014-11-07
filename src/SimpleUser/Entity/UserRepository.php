@@ -40,9 +40,16 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     /** @var Callable */
     protected $passwordStrengthValidator;
 
+    protected $fieldNames = array();
+
     //Get the table name
     public function getTableName() {
         return $this->getEntityManager()->getClassMetadata($this->userClass)->getTableName();
+
+    }
+
+    public function getFieldNames() {
+        return $this->getEntityManager()->getClassMetadata($this->userClass)->getFieldNames();
     }
 
     // ----- UserProviderInterface -----
@@ -343,11 +350,23 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     */
     public function findCount(array $criteria = array())
     {
-        return $this->createQueryBuilder('id')
-            ->select('COUNT(id)')
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
+        $query = $this->createQueryBuilder('u')
+            ->select('COUNT(u)');
+
+        foreach($criteria as $field_name => $field_value) {
+            $where  = 'u.' + $field_name . " = :" . $field_name . " ";
+            $query
+             ->where($where)
+             ->setParameter($field_name, $field_value);
+        }
+
+        print("\n");
+        print_r($query
+            ->getQuery());
+        print("\n");
+
+        return $query
+            ->getSingleScalarResult();
     }
 
 
@@ -411,8 +430,8 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
 
         $this->clearIdentityMap($user);
 
-        $this->conn->executeUpdate('DELETE FROM ' . $this->conn->quoteIdentifier($this->userTableName). ' WHERE id = ?', array($user->getId()));
-        $this->conn->executeUpdate('DELETE FROM ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' WHERE user_id = ?', array($user->getId()));
+        $this->getEntityManager()->remove($user);
+        $this->getEntityManager()->flush();
 
         $this->dispatcher->dispatch(UserEvents::AFTER_DELETE, new UserEvent($user));
     }
