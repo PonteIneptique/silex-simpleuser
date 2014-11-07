@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * \Doctrine\ORM\Mapping\Entity
  * @ORM\Table(name="simple_user_user")
+ * @ORM\Entity()
  */
 class User implements AdvancedUserInterface, \Serializable
 {
