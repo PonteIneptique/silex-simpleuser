@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
 use Silex\WebTestCase;
 
-class UserManagerTest extends WebTestCase
+class UserManagerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var UserManager
@@ -34,14 +34,11 @@ class UserManagerTest extends WebTestCase
     protected $dispatcher;
     
     private function generateDb() {
+        $erase = true;
         $app = require_once __DIR__ . "/../../../app/bootstrap.php";
     }
 
-    public function createApplication()
-    {
-        $this->generateDb();
-
-
+    private function setApp() {
         $app = new \Silex\Application();
 
         $app->register(new \Silex\Provider\SecurityServiceProvider(),
@@ -51,7 +48,7 @@ class UserManagerTest extends WebTestCase
 
         $app['db.options'] = array(
             'driver' => 'pdo_sqlite',
-            'path' => __DIR__.'/../../../app/cache/.ht.sqlite',
+            'path' => __DIR__.'/../../../cache/.ht.sqlite',
         );
 
         $app->register(new UserServiceProvider());
@@ -63,21 +60,39 @@ class UserManagerTest extends WebTestCase
         $this->userManager = $app["user.manager"];
         $this->conn = $app['db'];
         $this->dispatcher = $app['dispatcher'];
+    }
+
+    public function tearDown() {
+        $connection = $this->conn;
+        $connection->beginTransaction();
+
+        try {
+            $connection->query('DELETE FROM '.$this->userManager->getTableName());
+            $connection->commit();
+        } catch (Exception $e) {
+            print_r($e);
+        }
+    }
+
+
+    public function setUp()
+    {
+        $this->generateDb();
+        $this->setApp();
 
     }
 
     public function testCreateUser()
     {
-        $user = $this->userManager->createUser('test@example.com', 'pass');
+        $user = $this->userManager->createUser('test1@example.com', 'pass');
 
         $this->assertInstanceOf('Simpleuser\Entity\User', $user);
     }
 
     public function testStoreAndFetchUser()
     {
-        echo "Works until there";
 
-        $user = $this->userManager->createUser('test@example.com', 'password');
+        $user = $this->userManager->createUser('test2@example.com', 'password');
         $this->assertNull($user->getId());
         $this->userManager->insert($user);
         $this->assertGreaterThan(0, $user->getId());
@@ -88,7 +103,7 @@ class UserManagerTest extends WebTestCase
 
     public function testUpdateUser()
     {
-        $user = $this->userManager->createUser('test@example.com', 'pass');
+        $user = $this->userManager->createUser('test3@example.com', 'pass');
         $this->userManager->insert($user);
 
         $user->setName('Foo');
@@ -101,7 +116,7 @@ class UserManagerTest extends WebTestCase
 
     public function testDeleteUser()
     {
-        $email = 'test@example.com';
+        $email = 'test4@example.com';
 
         $user = $this->userManager->createUser($email, 'password');
         $this->userManager->insert($user);

@@ -22,7 +22,6 @@ use Doctrine\ORM\Tools\SchemaTool;
 use Symfony\Component\Filesystem\Filesystem;
 use Doctrine\Common\Annotations\AnnotationRegistry;  
 
-AnnotationRegistry::registerFile(__DIR__ . "/../vendor/doctrine/common/lib/Doctrine/Common/Persistence/Mapping/Driver/AnnotationDriver.php");
 
 //phpunit_bootstrap.php
 $app = new \Silex\Application();
@@ -35,7 +34,7 @@ $app->register(new \Silex\Provider\DoctrineServiceProvider());
 
 $app['db.options'] = array(
     'driver' => 'pdo_sqlite',
-    'path' => __DIR__.'/cache/.ht.sqlite',
+    'path' => __DIR__.'/../cache/.ht.sqlite',
 );
 
 $app['user.model'] = array(

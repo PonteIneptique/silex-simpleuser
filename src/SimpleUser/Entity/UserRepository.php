@@ -40,6 +40,11 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     /** @var Callable */
     protected $passwordStrengthValidator;
 
+    //Get the table name
+    public function getTableName() {
+        return $this->getEntityManager()->getClassMetadata($this->userClass)->getTableName();
+    }
+
     // ----- UserProviderInterface -----
     public function setApp(Application $app) {
         $this->app = $app;

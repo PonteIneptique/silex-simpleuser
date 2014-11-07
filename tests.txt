@@ -2,339 +2,82 @@ PHPUnit 4.3.4 by Sebastian Bergmann.
 
 Configuration read from /home/thibault/dev/silex-simpleuser/phpunit.xml.dist
 
-......creatingApp.Works until there[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m....[31;1mE[0m.[31;1mE[0m[41;37mF[0m[31;1mE[0m[31;1mE[0m[41;37mF[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m...............[41;37mF[0m.
+........[31;1mE[0m[31;1mE[0m........[41;37mF[0m[41;37mF[0m.[41;37mF[0m[41;37mF[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m[31;1mE[0m...............[41;37mF[0m.
 
-Time: 452 ms, Memory: 23.00Mb
+Time: 636 ms, Memory: 24.25Mb
 
-There were 13 errors:
+There were 6 errors:
 
-1) SimpleUser\Tests\UserManagerTest::testUpdateUser
-Doctrine\DBAL\DBALException: An exception occurred while executing 'INSERT INTO simple_user_user (email, password, salt, roles, name, time_created, username, is_enabled, confirmation_token, time_password_reset_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["test@example.com", "KPrdT52OnKLL5zDRRkAwbTtTcx930ykZX14DpFGcAshYixkasIxN9XOmwlwKDsYZ7iBJuD3y0IKENO6pytAHrw==", "7y0h1pegank8ccswss4g408ws88kocc", "N;", null, 1415315923, null, "1", null, null]:
+1) SimpleUser\Tests\UserManagerTest::testDeleteUser
+Undefined property: SimpleUser\Entity\UserRepository::$conn
 
-SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
+/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:414
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:125
 
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php:91
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:167
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:92
+2) SimpleUser\Tests\UserManagerTest::testCustomFields
+Doctrine\ORM\ORMException: Unrecognized field: customFields
 
-Caused by
-PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
+/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/ORMException.php:100
+/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:1681
+/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:1610
+/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:1701
+/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:1115
+/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:746
+/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityRepository.php:196
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:142
 
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:165
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:92
-
-2) SimpleUser\Tests\UserManagerTest::testDeleteUser
-Doctrine\DBAL\DBALException: An exception occurred while executing 'INSERT INTO simple_user_user (email, password, salt, roles, name, time_created, username, is_enabled, confirmation_token, time_password_reset_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["test@example.com", "XkPMvppfDcEYJL6IZPU+9fbjQuIl\/th3GlxAYEH+LaB6\/pj7UXDclYai12nEbWHYnzhvoOXHAQgZkXBKewtD2A==", "bt2iv8bqbd44cog8sowg84k48g4888k", "N;", null, 1415315923, null, "1", null, null]:
-
-SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php:91
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:167
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:107
-
-Caused by
-PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:165
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:107
-
-3) SimpleUser\Tests\UserManagerTest::testCustomFields
-Doctrine\DBAL\DBALException: An exception occurred while executing 'INSERT INTO simple_user_user (email, password, salt, roles, name, time_created, username, is_enabled, confirmation_token, time_password_reset_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["test@example.com", "ePU2f6WpnfAur0OgY7vlEC1Ll6D46wZl3oS6gFcjGabDRFLLqp16\/bJsO96Or0ksy9axxwessXqmpm2XaLVayg==", "4xqvkc8xo44c0os00sg0cgs0440g4k4", "N;", null, 1415315923, null, "1", null, null]:
-
-SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php:91
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:167
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:120
-
-Caused by
-PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:165
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:120
-
-4) SimpleUser\Tests\UserManagerTest::testLoadUserByUsernamePassingEmailAddress
-Doctrine\DBAL\DBALException: An exception occurred while executing 'INSERT INTO simple_user_user (email, password, salt, roles, name, time_created, username, is_enabled, confirmation_token, time_password_reset_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["test@example.com", "vzHJE0oYJRhNmOP+rPzQq7vWiv3hIB46762n4PzqXQgwpON2AsMvTAEf9+wwZjaI2Kh0fZiWtMU+qXVVN7Swtw==", "g32r7lgadtwkww4sg4c8w4w4gok0sso", "N;", null, 1415315923, null, "1", null, null]:
-
-SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php:91
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:167
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:144
-
-Caused by
-PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:165
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:144
-
-5) SimpleUser\Tests\UserManagerTest::testLoadUserByUsernamePassingUsername
-Doctrine\DBAL\DBALException: An exception occurred while executing 'INSERT INTO simple_user_user (email, password, salt, roles, name, time_created, username, is_enabled, confirmation_token, time_password_reset_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["test@example.com", "1XPhvE584VNujv0WqaPBM07vJnlFd+3QDCnCqnfYkVSJ5TQPvaQ2nvlHfhSLa0KhJ0+LTRr\/CyCQW6rZjKadyQ==", "sw8stdkdj28wwkwg0s8gok448skkkg0", "N;", null, 1415315923, "foo", "1", null, null]:
-
-SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php:91
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:167
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:156
-
-Caused by
-PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:165
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:156
-
-6) SimpleUser\Tests\UserManagerTest::testValidationFailsOnDuplicateEmail
-Doctrine\DBAL\DBALException: An exception occurred while executing 'INSERT INTO simple_user_user (email, password, salt, roles, name, time_created, username, is_enabled, confirmation_token, time_password_reset_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["test@example.com", "DDpcac4OkKf8xuZ1NgBLo\/TLF2f1kPT1l\/lvG7hxAhV2320SayNAN7se9KMBy7fcdnLd8\/MVcTXOZWWMQoXGuQ==", "r145rg9tkdwc0800c4o8o40cocgw8c8", "N;", null, 1415315923, null, "1", null, null]:
-
-SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php:91
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:167
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:209
-
-Caused by
-PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:165
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:209
-
-7) SimpleUser\Tests\UserManagerTest::testFindAndCount
-Doctrine\DBAL\DBALException: An exception occurred while executing 'INSERT INTO simple_user_user (email, password, salt, roles, name, time_created, username, is_enabled, confirmation_token, time_password_reset_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["test1@example.com", "M8mYUd5wIqJnba\/CIWn1RK4slUMMS872ltA0hJtYvpa\/gbSK0VTyTW9J4iG4tc1rB+1\/6Xe27nv1NcNDchh0BQ==", "tlxkhlyimo04w8ww0skk8kk08c48c4w", "N;", null, 1415315923, null, "1", null, null]:
-
-SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php:91
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:167
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:245
-
-Caused by
-PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:165
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:245
-
-8) SimpleUser\Tests\UserManagerTest::testSupportsBaseClass
-Doctrine\DBAL\DBALException: An exception occurred while executing 'INSERT INTO simple_user_user (email, password, salt, roles, name, time_created, username, is_enabled, confirmation_token, time_password_reset_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["test@example.com", "2HrwpqX1vvG458tloIceKznGxQ7jeiVQaFj5Apym76q7NpeZo\/GjZhxHvZyjYTRI3pCS84VAa5DIf6inLY+1jw==", "5ycl70jxy6g44gosow8kswkowookogc", "N;", null, 1415315923, null, "1", null, null]:
-
-SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php:91
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:167
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:291
-
-Caused by
-PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:165
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:291
-
-9) SimpleUser\Tests\UserManagerTest::testSupportsSubClass
-Doctrine\DBAL\DBALException: An exception occurred while executing 'INSERT INTO simple_user_user (email, password, salt, roles, name, time_created, username, is_enabled, confirmation_token, time_password_reset_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["test@example.com", "uBAbkWx4+1dLFlWx1wH8JwSgmJcY9zFn8QYLkqSFHEam9Mw9KhPulNCdKuIa3t02RBOibvhUofTV3nu0l0jBVw==", "pp4brv8j074wcko8o40cwsggg8so4c4", "N;", null, 1415315923, null, "1", null, null]:
-
-SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php:91
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:167
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:309
-
-Caused by
-PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:165
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:309
-
-10) SimpleUser\Tests\UserManagerTest::testBeforeInsertEvents
+3) SimpleUser\Tests\UserManagerTest::testBeforeInsertEvents
 Undefined property: SimpleUser\Entity\User::$customFields
 
 /home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/User.php:609
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:340
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:355
 
-11) SimpleUser\Tests\UserManagerTest::testAfterInsertEvents
+4) SimpleUser\Tests\UserManagerTest::testAfterInsertEvents
 Undefined property: SimpleUser\Entity\User::$customFields
 
 /home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/User.php:609
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:359
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:374
 
-12) SimpleUser\Tests\UserManagerTest::testBeforeUpdateEvents
-Doctrine\DBAL\DBALException: An exception occurred while executing 'INSERT INTO simple_user_user (email, password, salt, roles, name, time_created, username, is_enabled, confirmation_token, time_password_reset_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["test@example.com", "dpG9fiyR\/JMm1Zhf3uIeA7jxbNJgcMS\/Tjxv6bpBDoP2IXHrg2ETpiR+PH74y1scHIgfWg+JqbRpAG1nzuTBgA==", "curd5p18guo8okosgok8ggc80088oo4", "N;", null, 1415315923, null, "1", null, null]:
+5) SimpleUser\Tests\UserManagerTest::testBeforeUpdateEvents
+Undefined property: SimpleUser\Entity\User::$customFields
 
-SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
+/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/User.php:609
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:395
 
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php:91
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:167
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:377
+6) SimpleUser\Tests\UserManagerTest::testAfterUpdateEvents
+Undefined property: SimpleUser\Entity\User::$customFields
 
-Caused by
-PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:165
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:377
-
-13) SimpleUser\Tests\UserManagerTest::testAfterUpdateEvents
-Doctrine\DBAL\DBALException: An exception occurred while executing 'INSERT INTO simple_user_user (email, password, salt, roles, name, time_created, username, is_enabled, confirmation_token, time_password_reset_requested) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)' with params ["test@example.com", "EFpvxuq5borZiwJVFB5LSPiO3sT8hdDLKM\/wzXXI\/27zHjX+tSfUM+LoglHSuRYRbh92L1zjQ7bp7iSucgkHvg==", "sijpj83v4esso4kwsk8oosgs8444k4k", "N;", null, 1415315923, null, "1", null, null]:
-
-SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/DBALException.php:91
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:167
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:397
-
-Caused by
-PDOException: SQLSTATE[23000]: Integrity constraint violation: 19 UNIQUE constraint failed: simple_user_user.email
-
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/dbal/lib/Doctrine/DBAL/Statement.php:165
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/Persisters/BasicEntityPersister.php:279
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:966
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/UnitOfWork.php:335
-/home/thibault/dev/silex-simpleuser/vendor/doctrine/orm/lib/Doctrine/ORM/EntityManager.php:389
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:56
-/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/UserRepository.php:358
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:397
+/home/thibault/dev/silex-simpleuser/src/SimpleUser/Entity/User.php:609
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:415
 
 --
 
-There were 3 failures:
+There were 5 failures:
 
-1) SimpleUser\Tests\UserManagerTest::testCustomUserClass
+1) SimpleUser\Tests\UserManagerTest::testFindAndCount
+Failed asserting that '2' matches expected 1.
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:270
+
+2) SimpleUser\Tests\UserManagerTest::testCustomUserClass
 Failed asserting that SimpleUser\Entity\User Object (...) is an instance of class "SimpleUser\Tests\CustomUser".
 
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:272
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:287
 
-2) SimpleUser\Tests\UserManagerTest::testValidationWhenUsernameIsRequired
+3) SimpleUser\Tests\UserManagerTest::testSupportsSubClass
+Failed asserting that false is true.
+
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:330
+
+4) SimpleUser\Tests\UserManagerTest::testValidationWhenUsernameIsRequired
 Failed asserting that an array is empty.
 
-/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:328
+/home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserManagerTest.php:343
 
-3) SimpleUser\Tests\UserTest::testUserIsEnabledByDefault
+5) SimpleUser\Tests\UserTest::testUserIsEnabledByDefault
 Failed asserting that '1' is true.
 
 /home/thibault/dev/silex-simpleuser/tests/SimpleUser/Tests/UserTest.php:89
-[37;41m                                                   [0m
-[37;41mFAILURES!                                          [0m
-[37;41mTests: 44, Assertions: 49, Failures: 3, Errors: 13.[0m
+[37;41m                                                  [0m
+[37;41mFAILURES!                                         [0m
+[37;41mTests: 44, Assertions: 63, Failures: 5, Errors: 6.[0m
