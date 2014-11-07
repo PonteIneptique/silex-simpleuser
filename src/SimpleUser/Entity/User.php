@@ -4,6 +4,7 @@ namespace SimpleUser\Entity;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection();
 
 /**
  * @author Thibault Clerice
