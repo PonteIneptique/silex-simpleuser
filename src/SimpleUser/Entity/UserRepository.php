@@ -15,6 +15,12 @@ use Doctrine\ORM\EntityRepository;
 
 use Silex\Application;
 
+use SimpleUser\UserEvents;
+use SimpleUser\UserEvent;
+
+class UserRepository extends EntityRepository implements UserProviderInterface {
+    /** @var Application */
+    protected $app;
 
 class UserRepository extends EntityRepository implements UserProviderInterface {
     /** @var EventDispatcher */
@@ -27,7 +33,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     protected $userClass = '\SimpleUser\Entity\User';
 
     /** @var string */
-    protected $customFieldsClass = '\SimpleUser\CustomFields';
+    protected $customFieldsClass = '\SimpleUser\Entity\CustomFields';
 
     /** @var bool */
     protected $isUsernameRequired = false;
@@ -35,7 +41,36 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     /** @var Callable */
     protected $passwordStrengthValidator;
 
+    protected $fieldNames = array();
+
+    //Get the table name
+    public function getTableName() {
+        return $this->getEntityManager()->getClassMetadata($this->userClass)->getTableName();
+
+    }
+
+    public function getFieldNames() {
+        return $this->getEntityManager()->getClassMetadata($this->userClass)->getFieldNames();
+    }
+
     // ----- UserProviderInterface -----
+    public function setApp(Application $app) {
+        $this->app = $app;
+        $this->setDispatcher($app['dispatcher']);
+    }
+
+    public function setDispatcher(EventDispatcher $dispatcher) {
+        $this->dispatcher = $dispatcher;
+    }
+
+    private function _persist(User $user) {
+
+        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush();
+        
+
+        return $user;
+    }
 
     /**
      * Loads the user for the given username or email address.
@@ -152,10 +187,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
      */
     public function createUser($email, $plainPassword, $name = null, $roles = array())
     {
-
-        $userClass = $this->getUserClass();
-
-        $user = new $userClass($email);
+        $user = new User($email);
 
         if (!empty($plainPassword)) {
             $this->setUserPassword($user, $plainPassword);
@@ -167,7 +199,6 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
         if (!empty($roles)) {
             $user->setRoles($roles);
         }
-
         return $user;
     }
 
@@ -321,12 +352,10 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     */
     public function findCount(array $criteria = array())
     {
-        return $this->createQueryBuilder('id')
-            ->select('COUNT(id)')
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
+        $users = $this->findBy($criteria);
+        return count($users);
     }
+
 
 
     /**
@@ -338,28 +367,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     {
         $this->dispatcher->dispatch(UserEvents::BEFORE_INSERT, new UserEvent($user));
 
-        $sql = 'INSERT INTO ' . $this->conn->quoteIdentifier($this->userTableName) . '
-            (email, password, salt, name, roles, time_created, username, isEnabled, confirmationToken, timePasswordResetRequested)
-            VALUES (:email, :password, :salt, :name, :roles, :timeCreated, :username, :isEnabled, :confirmationToken, :timePasswordResetRequested) ';
-
-        $params = array(
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword(),
-            'salt' => $user->getSalt(),
-            'name' => $user->getName(),
-            'roles' => implode(',', $user->getRoles()),
-            'timeCreated' => $user->getTimeCreated(),
-            'username' => $user->getRealUsername(),
-            'isEnabled' => $user->isEnabled(),
-            'confirmationToken' => $user->getConfirmationToken(),
-            'timePasswordResetRequested' => $user->getTimePasswordResetRequested(),
-        );
-
-        $this->conn->executeUpdate($sql, $params);
-
-        $user->setId($this->conn->lastInsertId());
-
-        $this->saveUserCustomFields($user);
+        $this->_persist($user);
 
         $this->identityMap[$user->getId()] = $user;
 
@@ -375,34 +383,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
     {
         $this->dispatcher->dispatch(UserEvents::BEFORE_UPDATE, new UserEvent($user));
 
-        $sql = 'UPDATE ' . $this->conn->quoteIdentifier($this->userTableName). '
-            SET email = :email
-            , password = :password
-            , salt = :salt
-            , name = :name
-            , roles = :roles
-            , time_created = :timeCreated
-            , username = :username
-            , isEnabled = :isEnabled
-            , confirmationToken = :confirmationToken
-            , timePasswordResetRequested = :timePasswordResetRequested
-            WHERE id = :id';
-
-        $params = array(
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword(),
-            'salt' => $user->getSalt(),
-            'name' => $user->getName(),
-            'roles' => implode(',', $user->getRoles()),
-            'timeCreated' => $user->getTimeCreated(),
-            'username' => $user->getRealUsername(),
-            'isEnabled' => $user->isEnabled(),
-            'confirmationToken' => $user->getConfirmationToken(),
-            'timePasswordResetRequested' => $user->getTimePasswordResetRequested(),
-            'id' => $user->getId(),
-        );
-
-        $this->conn->executeUpdate($sql, $params);
+        $this->_persist($user);
 
         $this->saveUserCustomFields($user);
 
@@ -414,12 +395,7 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
      */
     protected function saveUserCustomFields(User $user)
     {
-        $this->conn->executeUpdate('DELETE FROM ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' WHERE user_id = ?', array($user->getId()));
-
-        foreach ($user->getCustomFields() as $attribute => $value) {
-            $this->conn->executeUpdate('INSERT INTO ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' (user_id, attribute, value) VALUES (?, ?, ?) ',
-                array($user->getId(), $attribute, $value));
-        }
+        $this->_persist($user);
     }
 
     /**
@@ -433,8 +409,8 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
 
         $this->clearIdentityMap($user);
 
-        $this->conn->executeUpdate('DELETE FROM ' . $this->conn->quoteIdentifier($this->userTableName). ' WHERE id = ?', array($user->getId()));
-        $this->conn->executeUpdate('DELETE FROM ' . $this->conn->quoteIdentifier($this->userCustomFieldsTableName). ' WHERE user_id = ?', array($user->getId()));
+        $this->getEntityManager()->remove($user);
+        $this->getEntityManager()->flush();
 
         $this->dispatcher->dispatch(UserEvents::AFTER_DELETE, new UserEvent($user));
     }
@@ -564,5 +540,64 @@ class UserRepository extends EntityRepository implements UserProviderInterface {
 
             $this->app['user'] = $user;
         }
+    }
+
+    private function augmentedCritera(array $criteria) {
+        if(array_key_exists("customFields", $criteria) && count($criteria["customFields"]) > 0) {
+            $tuples = array();
+            foreach ($criteria["customFields"] as $key => $value) {
+                $tuples[] = $key . " " . $value;
+            }
+
+            $qb = $this->getEntityManager()->createQueryBuilder();
+
+            $fields = $qb   ->select("c")
+                            ->from($this->customFieldsClass, "c")
+                            ->where("CONCAT(CONCAT(c.attribute, ' '), c.value) IN (:tuples)")
+                            ->setParameter("tuples", $tuples)
+                            ->getQuery()
+                            ->getResult();
+
+            $ids = array();
+            $criteria_id = array();
+
+            foreach($fields as $field) {
+                $userId = $field->getUser()->getId();
+                if(!array_key_exists($userId, $ids)) {
+                    $ids[$userId] = array();
+                }
+                $ids[$userId][] = $field->getId();
+            }
+
+            foreach($ids as $id => $match) {
+                if(!in_array($id, $criteria_id) && count($match) === count($criteria["customFields"])) {
+                    $criteria_id[] = $id;
+                }
+            }
+
+            if(array_key_exists("id", $criteria)) {
+                $criteria["id"] = array_intersect($criteria_id, array($criteria["id"]));
+            } else {
+                $criteria["id"] = $criteria_id;
+            }
+            unset($criteria["customFields"]);
+        }
+        return $criteria;
+    }
+
+    /**
+     * Augmented version of findBy to procure a simple way to ask for customFields relationships
+     *
+     *
+     */
+
+    public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null) {
+        $criteria = $this->augmentedCritera($criteria);
+        return parent::findBy($criteria, $orderBy, $limit, $offset);
+    }
+
+    public function findOneBy(array $criteria) {
+        $criteria = $this->augmentedCritera($criteria);
+        return parent::findOneBy($criteria);
     }
 }

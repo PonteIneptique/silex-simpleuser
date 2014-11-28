@@ -113,16 +113,21 @@ class UserServiceProvider implements ServiceProviderInterface, ControllerProvide
             $app['user.options'] = $options;
         });
 
-        $app['user.doctrine.em'] = $app->share(function ($app) {
+        $app['doctrine.orm.entity_manager'] = $app->share(function ($app) {
             $conn = $app['dbs']['default'];
             $em = $app['dbs.event_manager']['default'];
 
 
             $isDevMode = true;
-            $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__.'/../Entity'), $isDevMode);
+            $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__.'/Entity'), $isDevMode, null, null, false);
             $em = EntityManager::create($conn, $config, $em);
             return $em;
         });
+
+        $app['user.model'] = array(
+            "user" => "\\SimpleUser\\Entity\\User",
+            "customFields" => "\\SimpleUser\\Entity\\CustomFields"
+        );
 
         // Token generator.
         $app['user.tokenGenerator'] = $app->share(function($app) { return new TokenGenerator($app['logger']); });
@@ -131,16 +136,8 @@ class UserServiceProvider implements ServiceProviderInterface, ControllerProvide
         $app['user.manager'] = $app->share(function($app) {
             $app['user.options.init']();
 
-            $userManager = $app['user.doctrine.em']->getRepository("\\SimpleUser\\Entity\\User");
-
-            $userManager->setUserClass($app['user.options']['userClass']);
-            $userManager->setUsernameRequired($app['user.options']['isUsernameRequired']);
-            /*
-            To be updated
-            $userManager->setUserCustomFieldsTableName($app['user.options']['userCustomFieldsTableName']);
-            */
-
-           
+            $userManager = $app['doctrine.orm.entity_manager']->getRepository("\\SimpleUser\\Entity\\User");
+            $userManager->setApp($app);
             return $userManager;
         });
 

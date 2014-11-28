@@ -10,23 +10,31 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user_custom_fields")
  * @ORM\Entity(repositoryClass="SimpleUser\Entity\CustomFieldsRepository")
  */
-class CustomFields
+class CustomFields 
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=true)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $userId;
+    private $id;
+
+    /**
+     * @var \SimpleUser\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="CustomFields", cascade={"all"})
+     * @ORM\JoinColumns({
+     *  @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
 
     /**
      * @var string
      *
      * @ORM\Column(name="attribute", type="string", length=50, nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
      */
     private $attribute = '';
 
@@ -37,6 +45,11 @@ class CustomFields
      */
     private $value;
 
+    public function __construct($user, $attribute, $value) {
+        $this->setUser($user);
+        $this->setAttribute($attribute);
+        $this->setValue($value);
+    }
 
     /**
      * Set userId
@@ -44,9 +57,9 @@ class CustomFields
      * @param integer $userId
      * @return CustomFields
      */
-    public function setUserId($userId)
+    public function setUser(User $user = null)
     {
-        $this->userId = $userId;
+        $this->user = $user;
 
         return $this;
     }
@@ -56,9 +69,9 @@ class CustomFields
      *
      * @return integer 
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 
     /**
@@ -103,6 +116,16 @@ class CustomFields
      * @return string 
      */
     public function getValue()
+    {
+        return $this->value;
+    }
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
     {
         return $this->value;
     }

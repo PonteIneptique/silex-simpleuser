@@ -18,7 +18,7 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 
 use Silex\WebTestCase;
 
-class UserManagerTest extends WebTestCase
+class UserManagerTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var UserManager
@@ -33,9 +33,26 @@ class UserManagerTest extends WebTestCase
     /** @var EventDispatcher */
     protected $dispatcher;
     
-    public function createApplication()
-    {
-        require_once __DIR__ . "/../../../app/phpunit_bootstrap.php";
+    private function generateDb() {
+        $erase = true;
+        $app = require_once __DIR__ . "/../../../app/bootstrap.php";
+    }
+
+    private function setApp() {
+        $app = new \Silex\Application();
+
+        $app->register(new \Silex\Provider\SecurityServiceProvider(),
+            array('security.firewalls' => array('dummy-firewall' => array('form' => array())))
+        );
+        $app->register(new \Silex\Provider\DoctrineServiceProvider());
+
+        $app['db.options'] = array(
+            'driver' => 'pdo_sqlite',
+            'path' => __DIR__.'/../../../cache/.ht.sqlite',
+        );
+
+        $app->register(new UserServiceProvider());
+        
         /*
          *  Class vars
          */
@@ -46,18 +63,41 @@ class UserManagerTest extends WebTestCase
 
     }
 
+    public function tearDown() {
+        $connection = $this->conn;
+
+        foreach($this->app["user.model"] as $model) {
+            $repo = $this->app['doctrine.orm.entity_manager']->getRepository($model);
+            $connection->beginTransaction();
+            try {
+                $connection->query('DELETE FROM '.$repo->getTableName());
+                $connection->commit();
+            } catch (Exception $e) {
+                //print_r($e);
+            }
+        }
+    }
+
+
+    public function setUp()
+    {
+        $this->generateDb();
+        $this->setApp();
+
+    }
+
     public function testCreateUser()
     {
         $user = $this->userManager->createUser('test@example.com', 'pass');
 
-        $this->assertInstanceOf('Simpleuser\User', $user);
+        $this->assertInstanceOf('Simpleuser\Entity\User', $user);
     }
 
     public function testStoreAndFetchUser()
     {
+
         $user = $this->userManager->createUser('test@example.com', 'password');
         $this->assertNull($user->getId());
-
         $this->userManager->insert($user);
         $this->assertGreaterThan(0, $user->getId());
 
@@ -95,20 +135,21 @@ class UserManagerTest extends WebTestCase
         $user = $this->userManager->createUser('test@example.com', 'pass');
         $user->setCustomField('field1', 'foo');
         $user->setCustomField('field2', 'bar');
-
+        
         $this->userManager->insert($user);
 
         $storedUser = $this->userManager->getUser($user->getId());
+
         $this->assertEquals('foo', $storedUser->getCustomField('field1'));
         $this->assertEquals('bar', $storedUser->getCustomField('field2'));
 
         // Search by two custom fields.
         $foundUser = $this->userManager->findOneBy(array('customFields' => array('field1' => 'foo', 'field2' => 'bar')));
-        $this->assertEquals($user, $foundUser);
+        $this->assertEquals($storedUser, $foundUser);
 
         // Search by one custom field and one standard property.
         $foundUser = $this->userManager->findOneBy(array('id' => $user->getId(), 'customFields' => array('field2' => 'bar')));
-        $this->assertEquals($user, $foundUser);
+        $this->assertEquals($storedUser, $foundUser);
 
         // Failed search returns null.
         $foundUser = $this->userManager->findOneBy(array('customFields' => array('field1' => 'foo', 'field2' => 'does-not-exist')));
@@ -234,7 +275,9 @@ class UserManagerTest extends WebTestCase
         $this->assertEquals(1, $numResults);
         $this->assertEquals($user1, reset($results));
 
-        $criteria = array('customFields' => array($customField => $customVal));
+        $criteria = array('customFields' => array(
+            $customField => $customVal
+        ));
         $results = $this->userManager->findBy($criteria);
         $numResults = $this->userManager->findCount($criteria);
         $this->assertCount(2, $results);

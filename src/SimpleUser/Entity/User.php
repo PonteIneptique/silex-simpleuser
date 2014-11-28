@@ -4,11 +4,11 @@ namespace SimpleUser\Entity;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * User
- *
- * \Doctrine\ORM\Mapping\Entity
+ * @author Thibault Clerice
+ * @ORM\Entity(repositoryClass="SimpleUser\Entity\UserRepository")
  * @ORM\Table(name="simple_user_user")
  */
 class User implements AdvancedUserInterface, \Serializable
@@ -16,9 +16,9 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", nullable=true)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -53,7 +53,7 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=100)
+     * @ORM\Column(name="name", type="string", length=100, nullable=true)
      */
     private $name;
 
@@ -76,7 +76,7 @@ class User implements AdvancedUserInterface, \Serializable
      *
      * @ORM\Column(name="is_enabled", type="boolean")
      */
-    private $isEnabled = '1';
+    private $isEnabled = true;
 
     /**
      * @var string
@@ -92,7 +92,12 @@ class User implements AdvancedUserInterface, \Serializable
      */
     private $timePasswordResetRequested;
 
-    //protected $customFields = array();
+    /** 
+     * @var \Doctrine\Common\Collections\ArrayCollection()
+     *
+     * @ORM\OneToMany(targetEntity="CustomFields", mappedBy="User",cascade={"all"})
+     */
+    protected $customFields;
 
 
     /**
@@ -105,6 +110,7 @@ class User implements AdvancedUserInterface, \Serializable
         $this->email = $email;
         $this->timeCreated = time();
         $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->customFields = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -602,45 +608,73 @@ class User implements AdvancedUserInterface, \Serializable
 
 
     /**
-     * @param string $customField
-     * @return bool
+     * @param CustomField $customField
+     * 
+     * @return this
      */
-    public function hasCustomField($customField)
+    public function addCustomFields(CustomFields $customFields)
     {
-        return array_key_exists($customField, $this->customFields);
+        $this->customFields->add($customFields);
+
+        return $this;
     }
 
     /**
-     * @param string $customField
-     * @return mixed|null
+     * @param CustomField $customField
      */
-    public function getCustomField($customField)
+    public function removeCustomFields(CustomFields $customFields)
     {
-        return $this->hasCustomField($customField) ? $this->customFields[$customField] : null;
+        $this->customFields->removeElement($customFields);
     }
 
     /**
-     * @param string $customField
-     * @param mixed $value
-     */
-    public function setCustomField($customField, $value)
-    {
-        $this->customFields[$customField] = $value;
-    }
-
-    /**
-     * @param array|null $customFields
-     */
-    public function setCustomFields($customFields)
-    {
-        $this->customFields = $customFields;
-    }
-
-    /**
-     * @return array
+     * @return \Doctrine\Common\Collections\ArrayCollection()
      */
     public function getCustomFields()
     {
         return $this->customFields;
+    }
+
+    /**
+     * @param string $attribute
+     * 
+     * @return bool
+     */
+    public function hasCustomField($attribute)
+    {
+        foreach($this->customFields as $field) {
+            if($attribute === $field->getAttribute()){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+
+    /**
+     * @param string $attribute
+     * 
+     * @return bool
+     */
+    public function getCustomField($attribute)
+    {
+        foreach($this->customFields as $field) {
+            if($attribute === $field->getAttribute()){
+                return $field->getValue();
+            }
+        }
+        
+        return false;
+    }
+
+    /**
+     * @param string $attribute
+     * @param string $value
+     * 
+     * @return bool
+     */
+    public function setCustomField($attribute, $value) {
+        $this->addCustomFields(new CustomFields($this, $attribute, $value));
     }
 }
